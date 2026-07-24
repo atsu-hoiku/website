@@ -1,73 +1,535 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>atsu-hoiku.com</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f8f9;
-    text-align:center;
-    margin:0;
-}
+    <title>AI × 保育 × 教育｜岩田篤典</title>
 
-header{
-    background:#2E8B57;
-    color:white;
-    padding:50px 20px;
-}
+    <meta name="description" content="保育・教育の現場経験をもとに、AI活用やWeb制作、保育実践について発信するサイトです。">
 
-section{
-    padding:40px;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-h1{
-    font-size:42px;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-p{
-    font-size:20px;
-}
+        body {
+            margin: 0;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "Noto Sans JP",
+                sans-serif;
+            color: #243238;
+            background-color: #f7faf8;
+            line-height: 1.8;
+        }
 
-.button{
-    display:inline-block;
-    margin-top:25px;
-    background:#2E8B57;
-    color:white;
-    padding:15px 30px;
-    text-decoration:none;
-    border-radius:10px;
-}
-</style>
+        a {
+            color: inherit;
+        }
 
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #dfe8e3;
+        }
+
+        .header-inner {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .site-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #173b35;
+            text-decoration: none;
+        }
+
+        .global-nav ul {
+            display: flex;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .global-nav a {
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #334a46;
+        }
+
+        .global-nav a:hover {
+            color: #2e8b57;
+        }
+
+        .hero {
+            padding: 110px 0 100px;
+            background:
+                linear-gradient(135deg,
+                    rgba(229, 244, 235, 0.96),
+                    rgba(232, 240, 249, 0.96));
+        }
+
+        .hero-inner {
+            max-width: 800px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background-color: #ffffff;
+            color: #2e6f5e;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            margin: 0 0 24px;
+            font-size: clamp(2.4rem, 7vw, 4.8rem);
+            line-height: 1.2;
+            color: #173b35;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: 0 0 32px;
+            font-size: 1.1rem;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 24px;
+            border-radius: 10px;
+            background-color: #2e8b57;
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+        }
+
+        .button-secondary {
+            background-color: #173b35;
+        }
+
+        section {
+            padding: 88px 0;
+        }
+
+        section:nth-of-type(even) {
+            background-color: #ffffff;
+        }
+
+        .section-heading {
+            margin-bottom: 42px;
+        }
+
+        .section-heading span {
+            display: block;
+            margin-bottom: 8px;
+            color: #2e8b57;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            color: #173b35;
+        }
+
+        .section-heading p {
+            max-width: 720px;
+            margin: 16px 0 0;
+        }
+
+        .profile-box {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .profile-image {
+            min-height: 280px;
+            display: grid;
+            place-items: center;
+            border-radius: 20px;
+            background-color: #dfeee6;
+            color: #53756b;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            padding: 28px;
+            border: 1px solid #dfe8e3;
+            border-radius: 16px;
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(41, 73, 63, 0.06);
+        }
+
+        .card h3 {
+            margin: 0 0 14px;
+            color: #173b35;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            margin: 0;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #2e8b57;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .tool-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .tool-item {
+            padding: 24px 18px;
+            border-radius: 14px;
+            background-color: #edf5f1;
+            text-align: center;
+            font-weight: 700;
+            color: #244b42;
+        }
+
+        .contact-box {
+            padding: 52px;
+            border-radius: 24px;
+            background-color: #173b35;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            margin-top: 0;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+        }
+
+        footer {
+            padding: 28px 0;
+            background-color: #102c28;
+            color: #dceae5;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 800px) {
+            .header-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+
+            .global-nav ul {
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+
+            .hero {
+                padding: 80px 0 72px;
+            }
+
+            .profile-box,
+            .card-grid,
+            .tool-list {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                padding: 36px 22px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <header>
+        <div class="container header-inner">
+            <a class="site-logo" href="#top">
+                AI × 保育 × 教育
+            </a>
 
-<header>
-<h1>atsu-hoiku.com</h1>
-<p>AI × 保育 × 教育</p>
-</header>
+            <nav class="global-nav" aria-label="メインナビゲーション">
+                <ul>
+                    <li><a href="#profile">自己紹介</a></li>
+                    <li><a href="#ai">AI活用</a></li>
+                    <li><a href="#column">保育・教育</a></li>
+                    <li><a href="#tools">AIツール</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<section>
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-inner">
+                <span class="hero-label">
+                    保育現場から考える、これからの学びと働き方
+                </span>
 
-<h2>ようこそ！</h2>
+                <h1>AI × 保育 × 教育</h1>
 
-<p>
-このホームページは現在制作中です。
-</p>
+                <p>
+                    保育・教育の現場経験をもとに、
+                    AI活用やWeb制作、日々の実践について発信しています。
+                    現場で本当に使える工夫を、分かりやすく届けるサイトです。
+                </p>
 
-<p>
-保育・教育・AI活用に関する情報を発信していきます。
-</p>
+                <div class="button-group">
+                    <a class="button" href="#ai">
+                        AI活用を見る
+                    </a>
 
-<a class="button" href="https://github.com/atsu-hoiku">
-GitHub
-</a>
+                    <a class="button button-secondary" href="#profile">
+                        プロフィール
+                    </a>
+                </div>
+            </div>
+        </section>
 
-</section>
+        <section id="profile">
+            <div class="container">
+                <div class="section-heading">
+                    <span>PROFILE</span>
+                    <h2>自己紹介</h2>
+                </div>
 
+                <div class="profile-box">
+                    <div class="profile-image">
+                        プロフィール画像予定
+                    </div>
+
+                    <div>
+                        <h3>岩田篤典</h3>
+
+                        <p>
+                            保育・教育分野を中心に、保育士、主任、園長、
+                            学童保育、発達支援、日本語教育などを経験してきました。
+                        </p>
+
+                        <p>
+                            現在は、これまでの保育経験にAIとWeb制作を掛け合わせ、
+                            現場の負担軽減や情報発信に役立つ方法を学び、実践しています。
+                        </p>
+
+                        <a class="card-link" href="profile/">
+                            詳しいプロフィールを見る →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai">
+            <div class="container">
+                <div class="section-heading">
+                    <span>AI PRACTICE</span>
+                    <h2>AI活用</h2>
+
+                    <p>
+                        保育現場や日常業務で使えるAI活用を、
+                        実践例とともに紹介します。
+                    </p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>保育計画の下書き</h3>
+
+                        <p>
+                            月案・週案・行事計画などを考える際に、
+                            AIを思考整理の相手として活用する方法です。
+                        </p>
+
+                        <a class="card-link" href="ai/">
+                            続きを見る →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>文章作成の補助</h3>
+
+                        <p>
+                            保護者向けのお知らせや職員向け資料を、
+                            分かりやすく整える活用例を紹介します。
+                        </p>
+
+                        <a class="card-link" href="ai/">
+                            続きを見る →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>業務改善のアイデア</h3>
+
+                        <p>
+                            会議、引き継ぎ、マニュアル作成など、
+                            保育園運営にAIを生かす方法を考えます。
+                        </p>
+
+                        <a class="card-link" href="ai/">
+                            続きを見る →
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="column">
+            <div class="container">
+                <div class="section-heading">
+                    <span>HOIKU & EDUCATION</span>
+                    <h2>保育・教育コラム</h2>
+
+                    <p>
+                        保育現場での経験や、子ども・保護者・職員との関わりから
+                        考えたことを発信します。
+                    </p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>大人が笑えば、子どもも笑う</h3>
+
+                        <p>
+                            保育者の表情や関わり方が、
+                            子どもたちの安心感にどう影響するのかを考えます。
+                        </p>
+
+                        <a class="card-link" href="hoiku/">
+                            続きを見る →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>優しさと厳しさのメリハリ</h3>
+
+                        <p>
+                            子どもを受け止めながら、
+                            必要なことを明確に伝える保育について紹介します。
+                        </p>
+
+                        <a class="card-link" href="hoiku/">
+                            続きを見る →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>働きやすい保育園とは</h3>
+
+                        <p>
+                            公平な職場、持続可能な業務量、
+                            保護者との協働について考えます。
+                        </p>
+
+                        <a class="card-link" href="hoiku/">
+                            続きを見る →
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools">
+            <div class="container">
+                <div class="section-heading">
+                    <span>AI TOOLS</span>
+                    <h2>おすすめAIツール</h2>
+
+                    <p>
+                        学習や文章作成、情報整理に活用している
+                        AIツールを紹介します。
+                    </p>
+                </div>
+
+                <div class="tool-list">
+                    <div class="tool-item">ChatGPT</div>
+                    <div class="tool-item">Gemini</div>
+                    <div class="tool-item">NotebookLM</div>
+                    <div class="tool-item">Claude</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="contact-box">
+                    <h2>お問い合わせ</h2>
+
+                    <p>
+                        保育・教育・AI活用・Web制作についての
+                        ご相談やご連絡はこちらからお願いします。
+                    </p>
+
+                    <a class="button" href="contact/">
+                        お問い合わせページへ
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <small>
+                © 2026 atsu-hoiku.com
+            </small>
+        </div>
+    </footer>
 </body>
+
 </html>
