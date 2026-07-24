@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>キリン・スカイパトロール</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="game-container">
+        <header class="game-header">
+            <p class="game-label">GIRAFFE SHOOTING GAME</p>
+            <h1>キリン・スカイパトロール</h1>
+
+            <p class="description">
+                空飛ぶキリンを操作して、雲のモンスターを倒そう！
+            </p>
+        </header>
+
+        <div class="game-wrapper">
+            <canvas id="gameCanvas" width="720" height="720" aria-label="キリン・スカイパトロールのゲーム画面"></canvas>
+
+            <div id="startScreen" class="screen-overlay">
+                <div class="message-box">
+                    <p class="message-icon">🦒</p>
+
+                    <h2>キリン・スカイパトロール</h2>
+
+                    <p>
+                        星の弾を撃って、空の平和を守ろう！
+                    </p>
+
+                    <button id="startButton" type="button">
+                        ゲームスタート
+                    </button>
+                </div>
+            </div>
+
+            <div id="messageScreen" class="screen-overlay hidden">
+                <div class="message-box">
+                    <p id="messageIcon" class="message-icon">
+                        🦒
+                    </p>
+
+                    <h2 id="messageTitle">
+                        ゲームオーバー
+                    </h2>
+
+                    <p id="messageText">
+                        もう一度挑戦しよう！
+                    </p>
+
+                    <p id="finalScore" class="final-score">
+                        スコア：0
+                    </p>
+
+                    <button id="restartButton" type="button">
+                        もう一度遊ぶ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <section class="controls">
+            <h2>操作方法</h2>
+
+            <div class="control-list">
+                <span>← → ↑ ↓：移動</span>
+                <span>W A S D：移動</span>
+                <span>スペース：星の弾を発射</span>
+                <span>R：リスタート</span>
+            </div>
+        </section>
+
+        <section class="rules">
+            <h2>ゲームルール</h2>
+
+            <div class="rule-list">
+                <p>
+                    ☁️ 雲モンスター：100点
+                </p>
+
+                <p>
+                    🎈 バルーンモンスター：200点
+                </p>
+
+                <p>
+                    💛 ハート：ライフが1回復
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+
+</html>

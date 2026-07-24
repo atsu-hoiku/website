@@ -1,0 +1,161 @@
+/* 全体のリセットと共通設定
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  color: #0f172a;
+  line-height: 1.6;
+  background-color: #ffffff;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto; */
+/* } 
+
+/* プロフィールカードのレイアウト */
+.section-title
+ /* {
+    margin: 30px 0px 0px 0px;
+} */
+.section-title
+ {
+    text-align: center;
+    font-size: 32px;
+    letter-spacing: 0.08em;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+
+.container {
+
+  max-width: 920px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 10px;
+}
+
+.profile-card {
+  display: flex;
+
+  justify-content: center;
+  place-items: center;
+  /* align-items: flex-start; */
+
+  gap: 30px;
+  margin-bottom: 30px;
+
+}
+
+/* 画像エリアの設定 */
+.profile-image {
+  flex-shrink: 0;
+  width: 300px;
+}
+
+.profile-image img {
+  margin-top: 30px;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 5px 5px 0px #ffe8bd;
+  transition: transform 0.3s ease
+}
+
+/* マウスが乗った時の設定を追加 */
+.profile-image img:hover {
+  transform: scale(1.1);
+  /* 10%大きくする */
+  cursor: pointer;
+  /* マウスカーソルを指マークにする場合 */
+}
+
+/* テキストエリアの設定 */
+.profile-info {
+  flex-grow: 1;
+}
+
+.role {
+  font-size: 24px;
+  font-weight: bold;
+  color:#f97316 ;
+  margin-top: 30px;
+  border-bottom: 5px solid #f97316;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0f172a;
+}
+
+.description {
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+/* 詳細リスト（定義リスト）のスタイリング */
+.history-list {
+  font-size: 13px;
+}
+
+.history-list dt {
+  float: left;
+  clear: left;
+  font-weight: normal;
+  color: #0f172a;
+}
+
+.history-list dd {
+  margin-left: 90px;
+  /* 縦並びの文字位置を揃えるための余白 */
+  margin-bottom: 5px;
+  color: #0f172a;
+}
+
+.history-list dd:last-child {
+  margin-bottom: 0;
+}
+
+/* レスポンシブ対応（画面幅が狭い場合） */
+@media (max-width: 600px) {
+  .profile-card {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .profile-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .history-list dt {
+    float: none;
+    clear: none;
+    font-weight: bold;
+  }
+
+  .history-list dd {
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+}

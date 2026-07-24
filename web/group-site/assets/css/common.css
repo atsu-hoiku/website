@@ -1,0 +1,320 @@
+@charset "UTF-8";
+
+/* =========================
+基本設定
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: #0f172a;
+    font-family: "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
+    line-height: 1.8;
+    background: #f8fafc;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* =========================
+共通幅
+========================= */
+
+.section-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    letter-spacing: 0.08em;
+}
+
+.section-title span {
+    color: #f97316;
+}
+
+/* =========================
+リンク hover
+========================= */
+
+a {
+    transition: 0.3s;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+/* navだけ色をオレンジにする */
+.global-nav a:hover {
+    color: #f97316;
+    opacity: 1;
+}
+
+.btn:hover,
+.small-btn:hover {
+    background: #f97316;
+    color: #fff;
+    opacity: 1;
+}
+
+.trial-btn:hover {
+    background: #d95f00;
+    opacity: 1;
+}
+
+/* =========================
+ヘッダー
+========================= */
+
+.site-header {
+    width: 100%;
+    background: #0f172a;
+}
+
+.header-inner {
+    max-width: 1000px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    margin: 0;
+    width: 210px;
+}
+
+.global-nav ul {
+    display: flex;
+    gap: 36px;
+}
+
+.global-nav a {
+    color: #f8fafc;
+    font-size: 14px;
+}
+
+/* PCでは非表示 */
+.menu-btn {
+    display: none;
+    width: 42px;
+    height: 34px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menu-btn span {
+    display: block;
+    height: 4px;
+    margin-bottom: 8px;
+    background: #fff;
+}
+
+/* =========================
+無料体験CTA
+========================= */
+
+.trial {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    background: #ffe8bd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.trial img {
+    width: 120px;
+}
+
+.trial h2 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.trial p {
+    margin: 8px 0 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.trial-btn {
+    display: inline-block;
+    padding: 18px 30px;
+    color: #fff;
+    font-weight: bold;
+    background: #f97316;
+}
+
+/* =========================
+フッター
+========================= */
+
+.site-footer {
+    width: 100%;
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+.footer-inner {
+    max-width: 1000px;
+    min-height: 170px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+}
+
+.footer-logo {
+    width: 250px;
+}
+
+.footer-info {
+    font-size: 18px;
+}
+
+.footer-info p {
+    margin: 0;
+}
+
+.footer-sns {
+    margin-left: auto;
+    display: flex;
+    gap: 35px;
+}
+
+.footer-sns img {
+    width: 70px;
+}
+
+.copyright {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    font-size: 12px;
+}
+
+.page-top {
+    position: absolute;
+    right: -70px;
+    bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.page-top:hover {
+    color: #f97316;
+    opacity: 1;
+}
+
+/* =========================
+スマホ用
+========================= */
+
+@media screen and (max-width: 767px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .section-inner {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .header-inner {
+        height: 70px;
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .header-logo {
+        width: 170px;
+    }
+
+    .global-nav {
+        display: none;
+    }
+
+    .global-nav.active {
+        display: block;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #0f172a;
+        z-index: 100;
+    }
+
+    .global-nav.active ul {
+        display: block;
+    }
+
+    .global-nav.active li {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .global-nav.active a {
+        display: block;
+        padding: 15px 20px;
+        color: #fff;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .trial {
+        display: block;
+        text-align: center;
+    }
+
+    .trial img {
+        width: 90px;
+        margin-bottom: 15px;
+    }
+
+    .trial h2 {
+        font-size: 24px;
+    }
+
+    .trial-btn {
+        margin-top: 20px;
+    }
+
+    .footer-inner {
+        padding: 35px 20px;
+        display: block;
+        text-align: center;
+        position: relative;
+    }
+
+    .footer-logo {
+        width: 220px;
+        margin: 0 auto 20px;
+    }
+
+    .footer-sns {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .page-top {
+        position: absolute;
+        right: 20px;
+        bottom: 70px;
+    }
+}

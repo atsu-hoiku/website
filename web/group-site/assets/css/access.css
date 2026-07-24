@@ -1,0 +1,211 @@
+@charset "UTF-8";
+/* アクセスページ */
+/* 基本 */
+
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    display: flex;
+}
+
+/* アクセス */
+
+.section-title {
+    /* background-color: aqua; */
+    margin: 30px 0;
+}
+
+/* 住所 */
+
+.mapaddress {
+    /* background-color: blue; */
+    font-size: 22px;
+
+}
+
+/* Googleマップ */
+
+.box_1 {
+    /* background-color: brown; */
+    width: 460px;
+    height: 345px;
+    justify-content: center;
+    align-items: center;
+}
+
+iframe {
+    display: block;
+}
+
+/* 画像下の名前 */
+
+figcaption {
+    /* background-color: aqua; */
+    font-size: 16px;
+    text-align: right;
+}
+
+figcaption::before {
+    content: "▲";
+    color: #f97316;
+}
+
+/* 街解説 */
+
+.text_1 {
+    /* background-color: blue; */
+    font-size: 18px;
+    text-align: center;
+}
+
+/* ルート */
+
+.route {
+    /* background-color: aqua; */
+    width: 680px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.h3 {
+    margin-top: 80px;
+    font-size: 26px;
+}
+
+/* 路線選択 */
+
+/* 間の線 */
+
+.separator {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background-color: #0f172a;
+    margin: 0 13px;
+    vertical-align: middle;
+}
+
+.choice {
+    /* background-color: blue;  */
+    font-size: 24px;
+    width: 450px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
+
+.choice li a:not(.current):hover {
+    border-bottom: 1px solid #0f172a;
+    opacity: 0.6;
+}
+
+.choice li .current {
+    border-bottom: 2px solid #f97316;
+}
+
+/* 順序リスト */
+
+ol {
+    counter-reset: step;
+}
+
+ol li {
+    counter-increment: step;
+}
+
+ol li::before {
+    content: counter(step);
+    color: #f97316;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+/* ==============================
+スマホ用
+============================== */
+
+@media screen and (max-width: 767px) {
+
+    .flex {
+        display: block;
+    }
+
+    .mapset,
+    .gaikanset {
+        width: 100%;
+    }
+
+    .mappair,
+    .gaikanpair {
+        width: 100%;
+    }
+
+    .map,
+    .gaikan {
+        width: 100%;
+        height: auto;
+    }
+
+    .map {
+        aspect-ratio: 4 / 3;
+    }
+
+    .box_1 {
+        width: 100%;
+        height: auto;
+        padding: 25px 0;
+    }
+
+    .mapaddress {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .text_1 {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .route {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .h3 {
+        margin-top: 50px;
+        font-size: 22px;
+    }
+
+    .choice {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    #choices2 {
+        width: 100%;
+    }
+
+    #choices2 ol {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    #choices2 li {
+        margin-bottom: 10px;
+        line-height: 1.7;
+    }
+}

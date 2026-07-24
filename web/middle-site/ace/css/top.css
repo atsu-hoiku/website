@@ -1,0 +1,313 @@
+@charset "utf-8";
+
+/* top.css
+　... トップページ固有の指定を記述し、トップページにのみ読み込ませる。 */
+
+/* ===========================================
+   ◆ メインビジュアル
+===========================================*/
+
+/* メインビジュアル画像の下の余白 */
+.mv{
+    margin-bottom: 30px;
+}
+
+/* 「英語を、もっと身近に。」のキャッチコピー */
+.top-text .copy{
+    width: 530px;
+    font-size: 50px;
+    font-weight: bold;
+    padding-bottom: 28px;
+    background: url(../images/waveline_334x18.png) right bottom no-repeat;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(0,0,0,.6);
+}
+
+/* 「。」だけ詰める */
+.top-text .copy span{
+    font-feature-settings: "palt";
+}
+
+/* 「エース英会話教室は...」のあいさつ文 */
+.top-text .text{
+    width: 530px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: justify;
+    line-height: 2.5;
+    letter-spacing: 0.01em;
+    text-shadow: 0 0 5px rgba(0,0,0,.6);
+}
+
+/* イラストの部分を作り出す */
+
+.top-text{
+    position: relative;    /* 位置の基準にする */
+}
+
+.top-text::after{
+    content:"";     /* 空っぽを差し込む*/
+    display:block;  /* 幅と高さの指定を効かせるために指定 */
+    width: 414px;   /* イラストの画像の幅 */
+    height:405px;   /* イラストの画像の高さ */
+
+    /* ↓ 画像の差し込み */
+    background: url(../images/illust_414x405.png) center center no-repeat;
+
+    /* ↓ relativeを指定した親に対する配置位置を指定 */
+    position: absolute;
+    right:0;
+    bottom:0;
+}
+
+
+/* 区切りのカーブを作り出す */
+
+.mv-area{
+    background: url(../images/curve_01_1280x50.png) no-repeat center bottom,
+    linear-gradient(180deg,#068da7 60%,#0c6599 100%);
+    padding-bottom: 98px;
+}
+/* ↑カンマ区切りで背景の重ね付け */
+
+/* ===========================================
+   ◆ メインコンテンツ部分
+===========================================*/
+
+/* 基本の見出し */
+section h2{
+    text-align: center;
+}
+
+/* 「FEATURES」「NEWS」の部分 */
+section h2 .en{
+    display: block;
+    font-family: Arial,sans-serif;
+    font-size: 64px;
+    letter-spacing: 8px;
+    text-stroke:2px #055570;            /* 文字の縁取り線 */
+    -webkit-text-stroke: 2px #055570;   /* ベンダープレフィックス */
+    color: transparent;
+    text-shadow: 0 20px 0 #fff100;
+    margin-bottom:20px;
+}
+
+/* 「エースの特色」「最新情報」の部分 */
+section h2 .ja{
+    font-size: 24px;
+}
+
+/* ハイフンの差し込み */
+section h2 .ja::before,
+section h2 .ja::after{
+    content: "-";
+    margin: 0 5px;
+}
+
+
+/* NEWSのほうの見出し（色だけ変更） */
+.news h2 .en{
+    text-stroke:2px #fff;
+    -webkit-text-stroke: 2px #fff;
+    text-shadow: 0 20px 0 #0c6599;
+}
+
+
+/* --- 各セクションの仕上げ --- */
+
+/* 特色セクション */
+.features{
+    padding: 20px 0;
+}
+
+.features h2{
+    margin-bottom: 16px;
+}
+
+/* アイテム幅の整備 */
+.features li{
+    width: 312px;
+}
+
+/* 真ん中のアイテムだけ上に余白を入れて下げる */
+.features li:nth-of-type(2){
+    padding-top: 32px;
+}
+
+/* 画像部分 + 1,2,3を作り出す */
+.features li .pic{
+    padding-bottom: 50px;
+    position: relative;     /* 位置の基準にする */
+}
+
+.features li .pic::after{
+    /* ↓ 数字を差し込んで文字の見た目をスタイリング */
+    content:"1";
+    font-family: Arial,sans-serif;
+    font-weight:bold;
+    font-size: 64px;
+    text-shadow: 4px 4px 0 #fff100;
+
+    /* ↓ 100px x 100px の丸の形を作り出す */
+    display: block;
+    width: 100px;
+    line-height:100px;
+    border-radius: 50px;
+    background-color: #fff;
+    text-align: center;
+
+    /* ↓ relativeを指定した親に対する配置位置を指定 */
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%); /* 左右真ん中配置の位置調整 */
+    bottom: 0;
+}
+
+/* 小見出し */
+.features h3{
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    margin: 0 20px 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #fff100;
+}
+
+/* リード文 */
+.features .text{
+    margin: 0 20px 30px;
+    text-align: justify;
+    line-height: 2;
+    color: #055570;
+}
+
+/* 「...について詳しく」ボタン */
+.features .more-btn{
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.features .more-btn a{
+    /* リンク範囲の拡大 */
+    display: block;
+    width: 100%;
+    height:100%;
+
+    /* paddingで矢印のスペースを確保 + 画像差し込み */
+    padding-bottom: 30px;
+    background: url(../images/arrow_01_200x30.png) center bottom no-repeat;
+    
+    /* aタグの文字色を継承で効かせる */
+    color: inherit;
+    
+    /* ホバー時の変化秒数 */
+    transition: background-position .3s;
+}
+
+
+/* ホバーで矢印を動かす */
+.features a:hover{
+    background-position: right 40px bottom;
+}
+
+
+/* 数字の差し替え */
+
+.features .course .pic::after{
+    content:"1";
+}
+
+.features .teacher .pic::after{
+    content:"2";
+}
+
+.features .school .pic::after{
+    content:"3";
+}
+
+/* 文字色の変更 */
+
+.features .course{
+    color:#ff3b78;
+}
+
+.features .teacher{
+    color:#6860c4;
+}
+
+.features .school{
+    color:#00aa64;
+}
+
+/* 矢印画像の差し替え */
+
+.features .course a{
+    background-image: url(../images/arrow_01_200x30.png);
+}
+
+.features .teacher a{
+    background-image: url(../images/arrow_02_200x30.png);
+}
+
+.features .school a{
+    background-image: url(../images/arrow_03_200x30.png);
+}
+
+
+
+/* 最新情報セクション */
+
+/* 区切りのカーブを作り出す */
+
+.news{
+    background: url(../images/curve_02_1280x50.png) no-repeat center top,
+    linear-gradient(0deg,#068da7 60%,#0c6599 100%);
+    padding: 98px 0 48px;
+}
+
+.news h2{
+    margin-bottom: 30px;
+}
+
+
+/* 記事表示部分のスタイリング */
+
+.news dl{
+    margin-bottom: 20px;
+}
+
+/* 横並びと行の調整 */
+.news dl .flex{
+    justify-content: flex-start;
+    gap:1em;
+    padding: 1em 0;
+    border-bottom: 2px solid #fff;
+}
+
+/* 【】のずれを詰める */
+.news dl dd{
+    font-feature-settings: "palt";
+    letter-spacing: 0.05em;
+}
+
+/* 「一覧を見る」ボタン */
+.news .more-btn{
+    text-align: right;
+}
+
+.news .more-btn a{
+    color: #fff;
+    font-weight: bold;
+    transition: color .3s;
+}
+
+/* ＞の差し込み */
+.news .more-btn a::after{
+    content:">";
+    margin-left: 5px;
+}
+
+.news .more-btn a:hover{
+    color: #0c6599;
+}

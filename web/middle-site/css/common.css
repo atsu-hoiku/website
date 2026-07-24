@@ -1,0 +1,668 @@
+@charset "utf-8";
+
+/* ヘッダーやフッターなどのサイト全体で共通となる記述や複数のページで使用できそうな記述を書く。 */
+/* リセットの記述(余白を取り払う,) */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+a {
+    text-decoration: none;
+}
+
+address {
+    font-style: normal;
+}
+
+/* 全体の基本指定（余白込みになってくれる、文字の状態を整える） */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: YuGothic, "Yu Gothic", "游ゴシック", "游ゴシック体", sans-serif;
+    font-weight: 500;
+    color: rgb(111, 115, 117);
+    line-height: 1;
+    background-color: #fff;
+}
+
+/* コンテンツ幅の制御用の記述(全体幅とNEWS幅) */
+.inner-1 {
+    width: 1080px;
+    margin: 0 auto;
+    background-color: #faeec8;
+    background-image: url(../images/giraffe2.png);
+    background-repeat: repeat;
+    background-position: center;
+    /* outline: 2px solid #0f0; */
+    /* background-color: bisque; */
+}
+
+.inner-2 {
+    width: 960px;
+    margin: 0 auto;
+    /* outline: 2px solid #f00;
+    background-color: burlywood; */
+}
+
+
+/* 背景塗分け用の記述 */
+/* .bg-1 {
+    background-color: #ff783c;
+    color: #fff;
+}
+
+.gr-1 {
+    background: linear-gradient(180deg, #068da7 60%, #0c6599 100%);
+    color: #fff;
+}
+
+.gr-2 {
+    background: linear-gradient(0deg, #068da7 60%, #0c6599 100%);
+    color: #fff;
+} */
+
+/* 横並び用の記述 */
+.flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+header {
+    padding: 20px;
+    background-color: rgba(255, 228, 196, 0.5);
+    background-image: url("../images/glass.png");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 100px auto;
+}
+
+header div {
+    display: flex;
+}
+
+header div .kirin2 {
+    font-size: 20px;
+    margin: 0 100px;
+    line-height: 2;
+    font-weight: bold;
+}
+
+nav {
+    background-color: beige;
+}
+
+nav ul {
+    display: flex;
+}
+
+/* 各 li への指定 */
+nav ul li {
+    border-right: 1px solid #777;
+    width: 192px;
+    text-align: center;
+    line-height: 32px;
+}
+
+nav ul li:last-of-type {
+    border-right: none;
+}
+
+nav ul li a {
+    color: #444;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: lightgray;
+    color: #fff;
+}
+
+.child {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.nobi {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.cta {
+    padding: 20px 0;
+}
+
+.cta a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgb(228, 74, 164);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cta a:hover {
+    background-color: lightgray;
+    color: #797373;
+}
+
+.news {
+    display: flex;
+    line-height: 2;
+    width: 500px;
+    margin: 0 auto;
+    border-bottom: 2px solid rgb(218, 164, 164);
+    /* outline: 2px solid rgb(81, 255, 0);
+    background-color: rgb(233, 124, 23); */
+}
+
+.news dt {
+    margin-right: 20px;
+}
+
+.inner-2 section {
+    text-align: center;
+}
+
+.kakko1 {
+    margin-left: -0.5em;
+}
+
+.kakko2 {
+    margin-right: -0.5em;
+}
+
+footer {
+    padding: 20px 30px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-image: url("../images/glass.png");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 100px auto;
+}
+
+footer address {
+    padding: 15px 0;
+    line-height: 1.5;
+}
+
+.small {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 28px;
+}
+
+.logobanner {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* ★ fadeUpアニメ */
+
+@keyframes fadeUp-move{
+    0%{
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* fadeUpアニメを適用する記述 （このクラスが付くとアニメが動く）*/
+.fadeUpActive{
+    animation:fadeUp-move 1s ease forwards;
+}
+
+/* 要素をあらかじめ下にずらして透明にしておく */
+.fadeUp-trigger{
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+
+/* 1個ずつタイミングをずらすなら・・・↓ */
+.delay-1{
+    animation-delay: 0s;
+}
+
+.delay-2{
+    animation-delay: 0.2s;
+}
+
+.delay-3{
+    animation-delay: 0.4s;
+}
+/* ===== 2026 AI活用演習ページ追加 ===== */
+.global-nav a.current { background-color: chocolate; color: #fff; }
+.news dd a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.news-new::after { content: "NEW"; margin-left: auto; color: #fff; background: rgb(228, 74, 164); border-radius: 10px; padding: 2px 7px; font-size: 11px; line-height: 1.5; align-self: center; }
+@media (max-width: 800px) {
+    .inner-1, .inner-2 { width: 100%; }
+    header div { align-items: center; }
+    header div .kirin2 { margin: 0 0 0 20px; font-size: 15px; }
+    .kirin img { max-width: 100%; height: auto; }
+    nav ul { flex-wrap: wrap; }
+    nav ul li { width: 33.333%; }
+    .news { width: 94%; align-items: flex-start; }
+    .news dt { min-width: 96px; }
+    .flex { flex-wrap: wrap; }
+}
+
+/* ================================================================
+   2026.07 レスポンシブ・ワイド画面対応
+   ================================================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 0;
+    overflow-x: hidden;
+    background-color: #faeec8;
+    background-image: url(../images/giraffe2.png);
+    background-repeat: repeat;
+    background-position: center;
+}
+
+/* サイト全体は常に画面幅100%。本文だけ最大1280pxに制限する */
+.inner-1 {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    background: transparent;
+}
+
+.inner-2 {
+    width: min(1280px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ヘッダーは背景を画面いっぱい、内容を中央寄せ */
+header {
+    width: 100%;
+    padding: 20px 24px 28px;
+}
+
+header > div {
+    width: min(1280px, 100%);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+header .kirin img {
+    display: block;
+    width: min(449px, 100%);
+}
+
+header div .kirin2 {
+    margin: 0;
+    flex: 0 1 520px;
+    text-align: center;
+}
+
+/* グローバルナビも画面幅100%、項目は最大1280pxで均等配置 */
+.global-nav,
+body > .inner-1 > nav {
+    width: 100%;
+}
+
+.global-nav ul,
+body > .inner-1 > nav ul {
+    width: min(1280px, 100%);
+    margin-inline: auto;
+    gap: 0;
+}
+
+.global-nav ul li,
+body > .inner-1 > nav ul li {
+    width: auto;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.global-nav ul li a,
+body > .inner-1 > nav ul li a {
+    padding: 8px 10px;
+    line-height: 1.4;
+}
+
+/* 最新情報：PCでは長い2件も一行に収める */
+.news {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    align-items: center;
+    width: min(1080px, 100%);
+    margin: 0 auto;
+    padding: 10px 12px;
+    line-height: 1.7;
+}
+
+.news dt {
+    margin-right: 0;
+    white-space: nowrap;
+}
+
+.news dd,
+.news dd a {
+    min-width: 0;
+    color: inherit;
+}
+
+@media (min-width: 769px) {
+    .news dd,
+    .news dd a {
+        white-space: nowrap;
+    }
+}
+
+/* フッターは背景を画面いっぱい、内容を中央寄せ */
+footer {
+    width: 100%;
+    padding: 24px 24px 0;
+}
+
+.logobanner {
+    width: min(1280px, 100%);
+    margin-inline: auto;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+/* タブレット */
+@media (max-width: 900px) {
+    .inner-2 {
+        width: min(100% - 32px, 1280px);
+    }
+
+    header > div {
+        gap: 20px;
+    }
+
+    header div .kirin2 {
+        font-size: 17px;
+    }
+
+    .global-nav ul,
+    body > .inner-1 > nav ul {
+        flex-wrap: wrap;
+    }
+
+    .global-nav ul li,
+    body > .inner-1 > nav ul li {
+        flex: 0 0 33.333%;
+        border-bottom: 1px solid #aaa;
+    }
+
+    .global-nav ul li:nth-child(3n),
+    body > .inner-1 > nav ul li:nth-child(3n) {
+        border-right: none;
+    }
+}
+
+/* スマートフォン */
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+
+    .inner-2 {
+        width: min(100% - 24px, 1280px);
+    }
+
+    header {
+        padding: 16px 12px 24px;
+    }
+
+    header > div {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    header .kirin {
+        width: min(100%, 360px);
+    }
+
+    header div .kirin2 {
+        flex: none;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .global-nav ul li,
+    body > .inner-1 > nav ul li {
+        flex-basis: 50%;
+    }
+
+    .global-nav ul li:nth-child(3n),
+    body > .inner-1 > nav ul li:nth-child(3n) {
+        border-right: 1px solid #777;
+    }
+
+    .global-nav ul li:nth-child(2n),
+    body > .inner-1 > nav ul li:nth-child(2n) {
+        border-right: none;
+    }
+
+    .child {
+        font-size: clamp(22px, 7vw, 30px);
+    }
+
+    .nobi {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .news {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        padding-inline: 4px;
+        text-align: left;
+    }
+
+    .news dd,
+    .news dd a {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .logobanner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer address {
+        text-align: center;
+    }
+
+    .assignment-banner img {
+        width: min(168px, 100%);
+    }
+}
+
+/* ================================================================
+   2026.07 ナビゲーションを画面幅いっぱいに統一
+   ================================================================ */
+.global-nav {
+    width: 100%;
+    margin: 0;
+    background-color: beige;
+    border-top: 1px solid rgba(119, 119, 119, 0.35);
+    border-bottom: 1px solid rgba(119, 119, 119, 0.35);
+}
+
+.global-nav ul {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+@media (min-width: 1281px) {
+    .global-nav {
+        padding-inline: calc((100% - 1280px) / 2);
+    }
+
+    .global-nav ul {
+        max-width: none;
+    }
+}
+
+
+/* ================================================================
+   スマートフォン用ハンバーガーメニュー
+   ================================================================ */
+.menu-toggle {
+    display: none;
+    width: 46px;
+    height: 46px;
+    padding: 10px;
+    border: 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 20;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin: 5px 0;
+    border-radius: 2px;
+    background: #654b38;
+    transition: transform .3s, opacity .3s;
+}
+
+.menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.cta-disabled {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 30px;
+    background-color: rgb(228, 74, 164);
+    color: #fff;
+    font-weight: bold;
+    cursor: default;
+}
+
+@media (max-width: 600px) {
+    header {
+        position: relative;
+    }
+
+    header > div {
+        position: relative;
+        flex-direction: row;
+        justify-content: center;
+        padding-right: 56px;
+    }
+
+    header .kirin {
+        width: min(100%, 300px);
+    }
+
+    header div .kirin2 {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+    }
+
+    .global-nav {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        transition: grid-template-rows .35s ease;
+        background-color: beige;
+    }
+
+    .global-nav.is-open {
+        grid-template-rows: 1fr;
+    }
+
+    .global-nav > ul {
+        min-height: 0;
+        overflow: hidden;
+        display: block;
+    }
+
+    .global-nav ul li,
+    body > .inner-1 > nav ul li {
+        width: 100%;
+        border-right: 0;
+        border-bottom: 1px solid #c6bfa8;
+    }
+
+    .global-nav ul li:nth-child(3n),
+    .global-nav ul li:nth-child(2n),
+    body > .inner-1 > nav ul li:nth-child(3n),
+    body > .inner-1 > nav ul li:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .global-nav ul li a {
+        padding: 13px 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-toggle span,
+    .global-nav {
+        transition: none;
+    }
+}

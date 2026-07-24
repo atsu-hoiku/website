@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アクセス</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/access.css">
+    <link rel="icon" href="../favicon.ico">
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/access.js"></script>
+</head>
+
+<body id="top">
+
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="header-logo">
+                <a href="../index.html"><img src="../assets/images/rogo.png" alt="vamos MUSICのロゴ" width="2850"
+                        height="850"></a>
+            </h1>
+
+            <nav class="global-nav">
+                <ul>
+                    <li><a href="../index.html">トップ</a></li>
+                    <li><a href="../subpage1_course/index.html">コース</a></li>
+                    <li><a href="../subpage2_instructors/index.html">講師</a></li>
+                    <li><a href="../subpage3_gallery/index.html">ギャラリー</a></li>
+                    <li><a href="#">アクセス</a></li>
+                    <li><a href="../subpage5_form/index.html">体験・お問合せ</a></li>
+                </ul>
+            </nav>
+
+            <button class="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <div class="section-inner">
+        <main>
+            <section>
+                <h2 class="section-title">アクセス</h2>
+                <div class="flex mapset">
+
+                    <figure class="mappair"><iframe class="map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d809.8896030440281!2d139.70648926962906!3d35.7124828872048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d3c1b479ce3%3A0xd1c3ac97b1ec71e1!2z44CSMTY5LTAwNzUg5p2x5Lqs6YO95paw5a6_5Yy66auY55Sw6aas5aC077yS5LiB55uu77yR77yU4oiS77yS!5e0!3m2!1sja!2sjp!4v1783470986664!5m2!1sja!2sjp"
+                            width="460" height="345" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        <figcaption class="maptitle">＜Googlemap＞</figcaption>
+                    </figure>
+                    <div class="box box_1">
+                        <p class="mapaddress">〒169-0073<br>
+                            東京都新宿区高田馬場2‐14‐2<br>
+                            新陽ビル7階</p>
+                    </div>
+                </div>
+                <div class="flex gaikanset">
+                    <div class="box box_1">
+                        <p class="text_1">
+                            高田馬場は大学生や留学生が行き交い、<br>
+                            様々な飲食店が多く立ち並ぶ活気のある街です。<br>
+                            教室はビルの７階なので落ち着いて学べる環境です。<br>
+                            毎日レッスンに通いたくなる<br>
+                            楽しい無料体験にぜひお越しください。
+                        </p>
+                    </div>
+                    <figure class="gaikanpair">
+                        <img class="gaikan" src="../assets/images/gaikan.png" alt="ビルの外観画像" width="460" height="345">
+                        <figcaption class="gaikantitle">＜ビルの外観＞</figcaption>
+                    </figure>
+                </div>
+                <div class="route">
+                    <h3 class="section-title h3">～高田馬場駅各路線からのルート～</h3>
+                    <ul class="choice flex" id="choices1">
+                        <li><a href="#seibu" class="choicemen current">西武新宿線</a></li>
+                        <span class="separator"></span>
+                        <li><a href="#jr" class="choicemen">JR山手線</a></li>
+                        <span class="separator"></span>
+                        <li><a href="#tozai" class="choicemen">東西線</a></li>
+                    </ul>
+                    <div id="choices2">
+                        <div class="route_1" id="seibu">
+                            <ol class="text_2 seibutext">
+                                <li> .「出口２」を出ます。</li>
+                                <li> .「出口２」を背にして横断歩道を渡ると「アトムの壁画」があります。</li>
+                                <li> .右方向へお進みください。</li>
+                                <li> .セブンイレブンを過ぎると横断歩道がありますので渡ります。</li>
+                                <li> .そのまま早稲田通りをまっすぐ歩いてください。</li>
+                                <li> .１階にマツモトキヨシがあるビルの７階が教室です。</li>
+                            </ol>
+                        </div>
+                        <div class="route_2" id="jr">
+                            <ol class="texr_2 jrtext">
+                                <li> .「早稲田口改札」を出ます。</li>
+                                <li> .改札を背にして横断歩道を渡ると「アトムの壁画」があります。</li>
+                                <li> .右方向へお進みください。</li>
+                                <li> .セブンイレブンを過ぎると横断歩道がありますので渡ります。</li>
+                                <li> .そのまま早稲田通りをまっすぐ歩いてください。</li>
+                                <li> .１階にマツモトキヨシがあるビルの７階が教室です。</li>
+                            </ol>
+                        </div>
+                        <div class="route_3" id="tozai">
+                            <ol class="text_2 tozaitext">
+                                <li> .改札を出て「出口６」、または「出口７」から地上に出ます。</li>
+                                <li> .「出口７」の場合は目の前の横断歩道を渡ります。</li>
+                                <li> .「出口６」の場合は地上に出て左に進みます。</li>
+                                <li> .１階にマツモトキヨシがあるビルの７階が教室です。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <section class="trial section-inner">
+                <img src="../assets/images/calendar1.png" alt="カレンダーのアイコン" width="309" height="266">
+                <div>
+                    <h2>無料体験レッスン受付中！</h2>
+                    <p>お気軽にお問い合わせください</p>
+                </div>
+                <a href="../subpage5_form/index.html" class="trial-btn">体験レッスンを予約する　＞</a>
+            </section>
+        </main>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <a href="../index.html"><img src="../assets/images/rogo.png" alt="vamos MUSICのロゴ" width="2850"
+                        height="850"></a>
+            </div>
+
+            <div class="footer-info">
+                <p>〒169-0073 東京都新宿区高田馬場</p>
+                <p>2-14-2 新陽ビル 7階</p>
+                <p>TEL 03-8888-8888</p>
+            </div>
+
+            <small class="copyright">
+                ©2026 vamos MUSIC
+            </small>
+
+            <div class="footer-sns">
+                <a href="#" class="sns-link"><img src="../assets/images/Instagram_Glyph_White.png" alt="Instagramの公式ロゴ"
+                        width="4322" height="4320"></a>
+                <a href="#" class="sns-link"><img src="../assets/images/X-logo-white.png" alt="Xの公式ロゴ" width="2400"
+                        height="2453"></a>
+            </div>
+
+            <a href="#top" class="page-top">TOP<br>⌃</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

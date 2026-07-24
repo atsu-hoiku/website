@@ -1,0 +1,447 @@
+@charset "utf-8";
+
+/* common.css
+　... ヘッダーやフッターなどのサイト全体で共通となる部分や、
+　複数のページで使用できそうな指定を書いておき、すべてのページに共通で読み込ませる。 */
+
+/* ===========================================
+   ◆ リセットの役割をする記述 
+===========================================*/
+
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,figure{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img{
+    vertical-align: bottom;
+}
+
+a{
+    text-decoration: none;
+}
+
+address{
+    font-style: normal;
+}
+
+
+/* ===========================================
+   ◆ 全体に対する基本指定
+===========================================*/
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 16px;
+    font-family: YuGothic,"Yu Gothic","游ゴシック","游ゴシック体",sans-serif;
+    font-weight: 500;
+    color:#055570;
+    line-height: 1;
+    background-color: #fff;
+}
+
+/* コンテンツ幅の制御2種類 */
+
+.inner-1{
+    width: 1000px;
+    margin: 0 auto;
+    /* outline: 1px solid #00f; */
+}
+
+.inner-2{
+    width: 560px;
+    margin: 0 auto;
+    /* outline: 1px solid #0f0; */
+}
+
+
+/* 背景塗分け用class */
+
+/* オレンジ */
+.bg-1{
+    background-color: #ff783c;
+    color: #fff;
+}
+
+/* 青グラデ（薄い→濃い） */
+.gr-1{
+    background: linear-gradient(180deg,#068da7 60%,#0c6599 100%);
+    color: #fff;
+}
+
+/* 青グラデ（濃い→薄い） */
+.gr-2{
+    background: linear-gradient(0deg,#068da7 60%,#0c6599 100%);
+    color: #fff;
+}
+
+
+/* 横並び用class */
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* ===========================================
+   ◆ エリアごとの仕上げ
+===========================================*/
+
+/* ---------------------------
+    ヘッダーエリア 
+---------------------------*/
+
+/* ヘッダーまるごとブラウザ上部に固定 */
+header{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: 1;
+}
+
+header .bg-1{
+    padding: 18px 0 22px;  /* ボーダーが入るので下の余白を4px分大きめに */
+
+    /* ボックスに影をつける */
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0 ,0.5);
+
+    /* このあと作るボーダーの位置の基準にする */
+    position: relative;
+}
+
+/* ロゴ+電話番号,営業時間部分のスタイリング */
+header dl{
+    gap:9px;
+    align-items: center;
+}
+
+header dl .tel{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* カラフルなボーダーを作り出す */
+header .bg-1::after{
+    content:"";      /* 空っぽを差し込む*/
+    display: block;  /* 幅と高さの指定を効かせるために指定 */
+    width: 100%;     /* ボーダーの画像の幅(=画面幅) */
+    height:4px;      /* ボーダーの画像の高さ */
+
+    /* ↓ 画像の差し込み */
+    background: url(../images/border_91x4.gif) center center repeat;
+
+    /* ↓ relativeを指定した親に対する配置位置を指定 */
+    position: absolute;
+    left:0;
+    bottom:0;
+}
+
+
+
+
+/* ナビゲーション部分のスタイリング */
+
+nav ul li{
+    width: 184px;
+    line-height: 32px;
+    text-align: center;
+}
+
+nav ul li a{
+    display: block;
+    width: 100%;
+    height:100%;
+    background-color: #fff;
+    color: #ff783c;
+    font-weight: bold;
+    border-radius: 0 0 12px 12px;   /* 角ごとのボーダー指定 */
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0 ,0.5);
+
+    /* ホバー用の秒数指定 */
+    transition:background-color .3s;
+}
+
+/* 背景色の変更 */
+nav ul li a:hover{
+    background-color: #fff100;
+}
+
+/* ヘッダーを固定することによる滑り込み対処用の記述
+（ヘッダーの後続の要素にこのclass名をつける） */
+.header-br{
+    padding-top: 148px;     /*ヘッダーの高さ128px + 余白20px分の数値*/
+} 
+
+
+/* ---------------------------
+    フッターエリア 
+---------------------------*/
+
+footer {
+    padding:52px 0 116px;
+    /* 上：本来の余白48px + ボーダー4px = 52px,
+    　下：本来の余白48px + CTAの高さ68px = 116px */
+
+    /* ↓ このあと作るボーダーの位置の基準にする */
+    position: relative;
+}
+
+/* カラフルなボーダーを作り出す（ヘッダーと同じ手法） */
+footer::after{
+    content:"";
+    display: block;
+    width: 100%;
+    height:4px;
+    background: url(../images/border_91x4.gif) center center repeat;
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+/* フッターの中身のスタイリング */
+footer .flex{
+    margin-bottom: 56px;
+    justify-content: flex-start;
+}
+
+/* .box-1 = ロゴ＋電話,営業時間 */
+/* .box-2 = ２校分の住所 */
+/* .box-3 = Instagram */
+
+/* boxごとの余白と区切り線 */
+footer .box-1,
+footer .box-2{
+    border-right: 2px solid #fff;
+    padding-right: 42px;
+    margin-right: 42px;
+}
+
+/* .box-1の中を仕上げる */
+footer .box-1 .logo{
+    margin-bottom: 30px;
+}
+
+footer .box-1 .tel{
+    font-size: 24px;
+    font-weight:bold;
+    margin-bottom: 10px;
+}
+
+footer .box-1 .time{
+    font-size: 18px;
+}
+
+/* .box-2の中を仕上げる */
+footer .box-2{
+    font-size: 14px;
+    padding-top: 24px;
+}
+
+footer .box-2 dt{
+    font-weight: bold;
+    margin-bottom: 7px;
+
+    /* 【】を詰める */
+    font-feature-settings: "palt";
+}
+
+footer .box-2 dd{
+    margin-bottom: 21px;
+    padding-left: 1em;
+}
+
+/* .box-3の中を仕上げる */
+footer .box-3{
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 28px;
+}
+
+footer .box-3 a{
+    display: block;
+    margin-top: 25px;   /* 文字とアイコンの間の余白 */
+}
+
+/* 「公式」と「Instagram」の間を微調整 */
+footer .box-3 span{
+    margin-right: 4px;
+}
+
+/* コピーライト */
+footer .copyright{
+    text-align: center;
+}
+
+footer .copyright small{
+    font-size: 12px;
+}
+
+
+/* ---------------------------
+    トップボタン 
+---------------------------*/
+
+.to-top{
+    /* ブラウザ右下に固定 */
+    position: fixed;
+    right:40px;
+    bottom:108px;   /* 本来の数値40px + CTAの高さ68px = 108px */
+}
+
+/* ---------------------------
+    CTAボタン 
+---------------------------*/
+
+/* 白い帯状の部分 */
+.cta{
+    background-color: #fff;
+
+    /* ブラウザ下部に固定 */
+    position: fixed;
+    left:0;
+    bottom:0;
+    width: 100%;
+
+    padding: 14px 0;
+
+    /* 影をつける */
+    box-shadow: 0 -1px 5px 0 rgba(0, 0, 0 ,0.5);
+}
+
+/* ボタン部分のスタイリング */
+.cta p{
+    width: 250px;
+    line-height: 40px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cta p a{
+    display: block;
+    width: 100%;
+    height:100%;
+    background-color: #ff783c;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color .3s,  outline .3s;
+}
+
+.cta p a:hover{
+    color: #fff100;
+    outline: 3px solid #fff100;
+    /* hoverで枠線がつくようなスタイルにしたいときは、
+    borderだとガタつくのでoutline等で対応すると◎ */
+}
+
+
+/* =================================
+    ここからace-plus追記分
+================================= */
+
+/* Googleフォントを適用するclass */
+/* (このclass名を付けたところがこのフォントになる) */
+.bowlby-one-regular {
+  font-family: "Bowlby One", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* cssアニメーションの記述 */
+
+/* 基本の手順 */
+/* その1：@keyframesを使用した動き方の指定とアニメーションの名前付け */
+/* その2：各種animation系プロパティを使用したアニメーションの適用 */
+
+
+/* ★ 電話マークをゆらゆらさせてみる */
+
+@keyframes swing-move{
+    0%{
+        transform: rotate(10deg);
+    }
+
+    50%{
+        transform: rotate(-10deg);
+    }
+
+    100%{
+        transform: rotate(10deg);
+    }
+}
+
+.tel-icon{
+    animation: swing-move 1.5s linear infinite;
+}
+
+
+/* ★ cssのみでお手軽な背景画像の無限横スクロールアニメ */
+
+@keyframes bg-move{
+    0%{
+        background-position: 0 0;
+    }
+
+    100%{
+        background-position: -1416px 0;
+        /* 「-1416px」＝用意した画像の横幅 */
+    }
+}
+
+.slider-area{
+    border-top: 3px solid #fff100;
+    width: 100%;
+    height:200px;
+    /* 「200px」＝用意した画像の高さ */
+    background-image: url(../images/slide-image_1416x200.png);
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    animation: bg-move 24s linear infinite;
+}
+
+
+/* ★ fadeUpアニメ */
+
+@keyframes fadeUp-move{
+    0%{
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* fadeUpアニメを適用する記述 （このクラスが付くとアニメが動く）*/
+.fadeUpActive{
+    animation:fadeUp-move 1s ease forwards;
+}
+
+/* 要素をあらかじめ下にずらして透明にしておく */
+.fadeUp-trigger{
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+/* 1個ずつタイミングをずらすなら・・・↓ */
+.delay-1{
+    animation-delay: 0s;
+}
+
+.delay-2{
+    animation-delay: 0.2s;
+}
+
+.delay-3{
+    animation-delay: 0.4s;
+}

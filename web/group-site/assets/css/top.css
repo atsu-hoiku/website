@@ -1,0 +1,320 @@
+@charset "UTF-8";
+
+/* =========================
+メインビジュアル スライダー
+========================= */
+
+.hero {
+    width: 100%;
+    position: relative;
+}
+
+.hero-copy {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+}
+
+.hero-copy-main {
+    color: #fff;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero-copy-sub {
+    color: #f97316;
+    font-size: 42px;
+}
+
+.hero-slider {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    z-index: 1;
+}
+
+.hero-slide.is-active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.hero-slide:first-child {
+    position: relative;
+}
+
+.hero-slide img {
+    width: 100%;
+    display: block;
+}
+
+/* =========================
+リード文
+========================= */
+
+.lead {
+    padding-top: 25px;
+    text-align: center;
+}
+
+.lead h2 {
+    font-size: 24px;
+    margin: 0 0 12px;
+}
+
+.lead p {
+    margin: 6px 0;
+    font-size: 18px;
+}
+
+/* =========================
+3つの訴求
+========================= */
+
+.appeal {
+    margin-top: 35px;
+    display: flex;
+    gap: 10px;
+}
+
+.appeal-item {
+    flex: 1;
+    border: 2px solid #f97316;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.appeal-item img {
+    width: 85px;
+    margin-right: 15px;
+}
+
+.appeal-item h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.appeal-item p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+/* =========================
+コース
+========================= */
+
+.course {
+    margin-top: 70px;
+    text-align: center;
+}
+
+.course-list {
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+}
+
+.course-item {
+    width: 150px;
+    position: relative;
+}
+
+.course-photo {
+    width: 100%;
+    display: block;
+}
+
+.course-icon {
+    width: 52px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 45px;
+    padding: 12px 80px;
+    border: 2px solid #f97316;
+    color: #111827;
+    font-weight: bold;
+}
+
+/* =========================
+強み
+========================= */
+
+.strength {
+    margin-top: 80px;
+}
+
+.strength-list {
+    margin-top: 45px;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.strength-item {
+    width: 33.333%;
+}
+
+.strength-item h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.strength-item p {
+    font-size: 15px;
+}
+
+.strength-item img {
+    margin-top: 20px;
+}
+
+/* =========================
+ニュース上の音符
+========================= */
+
+.news-flame {
+    margin-top: 100px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.news-flame img {
+    width: 100%;
+    display: block;
+}
+
+/* =========================
+ニュース
+========================= */
+
+.news {
+    margin-top: 0;
+    border: none;
+    padding-top: 0;
+    padding-bottom: 20px;
+}
+
+.news .section-title {
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.news dl {
+    width: 520px;
+    margin: 0 auto;
+}
+
+.news dl div {
+    display: flex;
+    gap: 30px;
+    line-height: 1.7;
+}
+
+.news dt {
+    width: 120px;
+}
+
+.news dd {
+    margin: 0;
+}
+
+.news dd a {
+    font-weight: bold;
+    text-decoration: underline;
+    transition: .3s;
+    display: inline-block;
+}
+
+.news dd a:hover {
+    color: #f97316;
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* =========================
+スマホ用
+========================= */
+
+@media screen and (max-width: 767px) {
+
+    .hero-copy-main,
+    .hero-copy-sub {
+        font-size: 26px;
+    }
+
+    .hero-copy-main {
+        margin-bottom: 10px;
+    }
+
+    .lead h2 {
+        font-size: 20px;
+    }
+
+    .lead p {
+        font-size: 16px;
+    }
+
+    .appeal {
+        display: block;
+    }
+
+    .appeal-item {
+        margin-bottom: 12px;
+    }
+
+    .course-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .course-item {
+        width: 40%;
+    }
+
+    .btn {
+        padding: 12px 30px;
+    }
+
+    .strength-list {
+        display: block;
+    }
+
+    .strength-item {
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .news dl {
+        width: 100%;
+    }
+
+    .news dl div {
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .news dt {
+        width: auto;
+        font-weight: bold;
+    }
+}

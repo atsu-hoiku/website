@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+/*==============================
+ ギャラリー全体
+==============================*/
+
+.gallery {
+    width: 1000px;
+    margin: 0 auto;
+    /* padding: 40px 40px 60px ; */
+    box-sizing: border-box;
+    /* color: #0f172a; */
+    background-color: #f8fafc;
+}
+
+/*==============================
+ タイトル
+==============================*/
+
+/* .gallery h2 {
+    font-size: 32px;
+    text-align: center;
+    margin: 0 0 20px;
+} */
+
+.section-title {
+    margin: 30px 0;
+}
+
+
+/*==============================
+ 1・2段目（6枚）
+==============================*/
+
+.gallery3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px 40px;
+    margin-bottom: 40px;
+}
+
+.gallery3 .item {
+    width: 280px;
+    text-align: center;
+}
+
+.gallery3 .item img {
+    width: 280px;
+    height: 190px;
+    display: block;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/*==============================
+ 3段目（2枚）
+==============================*/
+
+.gallery2 {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.gallery2 .wide {
+    width: 445px;
+    text-align: center;
+}
+
+.gallery2 .wide img {
+    width: 445px;
+    height: 250px;
+    display: block;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/*==============================
+ キャプション
+==============================*/
+
+.gallery p {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    color: #f97316;
+    font-weight: bold;
+}
+
+/*==============================
+ フロアマップ
+==============================*/
+
+.floor {
+    text-align: center;
+}
+
+.floor img {
+    width: 920px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 16px;
+}
+
+.gallery img {
+    border-radius: 16px;
+    transition: all .3s ease;
+}
+
+.gallery img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+    filter: brightness(1.05);
+}
+
+.item:hover p,
+.wide:hover p {
+    color: #2563eb;
+    transition: .3s;
+}
+
+/* ==============================
+スマホ用
+============================== */
+
+@media screen and (max-width: 767px) {
+
+    .gallery {
+        width: 100%;
+        padding: 30px 20px 50px;
+    }
+
+    .gallery3 {
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .gallery3 .item {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .gallery3 .item img {
+        width: 100%;
+        height: auto;
+    }
+
+    .gallery2 {
+        display: block;
+        margin-bottom: 40px;
+    }
+
+    .gallery2 .wide {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .gallery2 .wide img {
+        width: 100%;
+        height: auto;
+    }
+
+    .floor img {
+        width: 100%;
+        height: auto;
+    }
+}

@@ -1,0 +1,471 @@
+@charset "utf-8";
+/* body{
+    background-color: blueviolet;
+} */
+/* トップページのみに効けばよい記述をする */
+
+.mv {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    text-align: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 20px;
+    /* background-image: url(../images/baloon.png);
+    background-repeat: repeat;
+    background-position: center;
+    background-color: azure; */
+}
+
+.slider img {
+    display: block;
+    margin: 0 auto;
+}
+
+h2,
+h3 {
+    padding: 20px 0;
+    color: chocolate;
+    font-weight: bold;
+}
+
+.tokucho {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.tokucho div {
+    border: 2px solid orange;
+    border-radius: 12px;
+}
+
+.tokucho img {
+    border-radius: 12px;
+}
+
+.tokucho p {
+    line-height: 2;
+    text-align: left;
+    padding: 0 5px 15px;
+}
+
+.tel {
+    display: flex;
+    text-align: left;
+    gap: 5px;
+    font-size: 30px;
+    color: #fff;
+    align-items: center;
+}
+
+.contact {
+    background-color: rgba(222, 184, 135, 0.8);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 200px;
+    border: 2px dashed orange;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.contact ul li dl {
+    margin: 10px 0;
+}
+
+.photo ul li img {
+    border-radius: 12px;
+}
+.latest-news { padding-top: 12px; }
+@media (max-width: 800px) {
+    .slider img { width: 100%; height: auto; }
+    .tokucho { flex-direction: column; padding: 0 16px; }
+    .tokucho img { width: 100%; height: auto; }
+    .photo ul { justify-content: center; }
+    .contact { margin: 0 16px 20px; padding: 18px; align-items: center; }
+}
+
+/* ================================================================
+   メインビジュアル：フェードスライダー
+   ================================================================ */
+.fixed-slider {
+    width: 678px;
+    max-width: calc(100% - 32px);
+    margin: 0 auto;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 678 / 452;
+    overflow: hidden;
+}
+
+.slider .main-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease, visibility 1.5s ease;
+}
+
+.slider .main-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.slider .main-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ================================================================
+   特徴カード：必ず表示し、画面に入るたびに浮き上がる
+   ================================================================ */
+.fadeUp-trigger {
+    transform: translateY(28px);
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.fadeUp-trigger.fadeUpActive {
+    animation: fadeUp-move 0.8s ease-out forwards;
+}
+
+/* ================================================================
+   フォトギャラリー：無限横スクロール
+   ================================================================ */
+.photo-marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 8px 0;
+}
+
+.photo-track {
+    display: flex;
+    width: max-content;
+    gap: 12px;
+    animation: photo-scroll 24s linear infinite;
+}
+
+.photo-track li {
+    flex: 0 0 auto;
+}
+
+.photo-track img {
+    display: block;
+    border-radius: 12px;
+}
+
+.photo-marquee:hover .photo-track {
+    animation-play-state: paused;
+}
+
+@keyframes photo-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 6px)); }
+}
+
+/* ================================================================
+   フッター：中間課題バナー
+   ================================================================ */
+.assignment-banner {
+    text-align: center;
+}
+
+.assignment-banner p {
+    margin-bottom: 8px;
+    color: chocolate;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.assignment-banner a {
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.assignment-banner a:hover {
+    transform: translateY(-4px);
+    opacity: 0.82;
+}
+
+.assignment-banner img {
+    border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slider .main-slide,
+    .fadeUp-trigger,
+    .photo-track {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .fadeUp-trigger {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+/* ================================================================
+   2026.07 トップページ：レスポンシブ・ワイド画面対応
+   ================================================================ */
+main > div:first-child {
+    width: 100%;
+}
+
+.mv {
+    width: min(1280px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 28px 16px 8px;
+}
+
+/* メインビジュアルは常に利用可能な横幅いっぱい */
+.fixed-slider {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+.slider {
+    width: 100%;
+    height: clamp(340px, 52vw, 680px);
+    aspect-ratio: auto;
+}
+
+.slider .main-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.latest-news {
+    padding-top: 24px;
+}
+
+.latest-news dl {
+    width: 100%;
+}
+
+.tokucho {
+    gap: 20px;
+}
+
+.tokucho > div {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    background-color: rgba(255,255,255,.72);
+}
+
+.tokucho img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+}
+
+.photo-marquee {
+    max-width: 100%;
+}
+
+.photo-track img {
+    width: clamp(182px, 18vw, 260px);
+    height: auto;
+    aspect-ratio: 1.82 / 1;
+    object-fit: cover;
+}
+
+.contact {
+    width: 100%;
+    margin: 0 auto 28px;
+    padding: 20px clamp(24px, 8vw, 120px);
+    align-items: center;
+    gap: 32px;
+}
+
+@media (max-width: 900px) {
+    .slider {
+        height: clamp(300px, 62vw, 560px);
+    }
+
+    .tokucho {
+        gap: 14px;
+    }
+
+    .contact {
+        padding: 20px 32px;
+    }
+}
+
+@media (max-width: 700px) {
+    .mv {
+        width: min(100% - 24px, 1280px);
+        padding: 22px 0 4px;
+    }
+
+    .slider {
+        height: clamp(240px, 68vw, 420px);
+    }
+
+    .tokucho {
+        flex-direction: column;
+        padding: 0;
+        gap: 18px;
+    }
+
+    .tokucho > div {
+        width: 100%;
+    }
+
+    .tokucho img {
+        aspect-ratio: 2 / 1;
+    }
+
+    .photo-track {
+        gap: 10px;
+        animation-duration: 20s;
+    }
+
+    .photo-track img {
+        width: 210px;
+    }
+
+    .contact {
+        flex-direction: column;
+        padding: 22px 16px;
+        gap: 4px;
+        text-align: center;
+    }
+
+    .contact ul {
+        width: 100%;
+    }
+
+    .tel {
+        justify-content: center;
+        font-size: clamp(24px, 8vw, 30px);
+    }
+}
+
+@media (max-width: 420px) {
+    .slider {
+        height: 270px;
+    }
+
+    .slider .main-slide img {
+        object-position: center;
+    }
+
+    .photo-track img {
+        width: 180px;
+    }
+}
+
+/* ================================================================
+   2026.07 メインビジュアル内コピー・直下CTA
+   ================================================================ */
+.hero-area {
+    width: 100%;
+}
+
+.fixed-slider {
+    position: relative;
+}
+
+/* コピーを写真の下部へ重ねる */
+.mv {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    bottom: clamp(18px, 4vw, 54px);
+    transform: translateX(-50%);
+    width: min(960px, calc(100% - 48px));
+    margin: 0;
+    padding: clamp(14px, 2vw, 24px) clamp(18px, 4vw, 48px);
+    color: #fff;
+    text-align: center;
+    border-radius: 16px;
+    background: linear-gradient(
+        90deg,
+        rgba(55, 38, 24, 0.28),
+        rgba(55, 38, 24, 0.72) 18%,
+        rgba(55, 38, 24, 0.72) 82%,
+        rgba(55, 38, 24, 0.28)
+    );
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+}
+
+.mv .child {
+    color: inherit;
+    font-size: clamp(24px, 3vw, 42px);
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+}
+
+.mv .nobi {
+    margin: 6px 0 0;
+    color: inherit;
+    font-size: clamp(15px, 1.6vw, 22px);
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+}
+
+/* ボタンは画像のすぐ下に配置 */
+.hero-cta {
+    margin: 0;
+    padding: 18px 16px 8px;
+    text-align: center;
+}
+
+.hero-cta a {
+    box-shadow: 0 4px 12px rgba(109, 57, 79, 0.2);
+}
+
+@media (max-width: 700px) {
+    .mv {
+        bottom: 12px;
+        width: calc(100% - 24px);
+        padding: 11px 12px;
+        border-radius: 10px;
+        background: rgba(45, 35, 27, 0.68);
+    }
+
+    .mv .child {
+        font-size: clamp(18px, 5.6vw, 26px);
+        line-height: 1.45;
+    }
+
+    .mv .nobi {
+        margin-top: 3px;
+        font-size: clamp(13px, 3.8vw, 17px);
+        line-height: 1.5;
+    }
+
+    .hero-cta {
+        padding-top: 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    .mv {
+        bottom: 8px;
+        width: calc(100% - 16px);
+        padding: 9px 8px;
+    }
+
+    .mv .child {
+        font-size: 17px;
+        letter-spacing: 0;
+    }
+
+    .mv .nobi {
+        font-size: 12px;
+        letter-spacing: 0;
+    }
+}

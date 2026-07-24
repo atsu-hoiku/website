@@ -1,0 +1,178 @@
+@charset "utf-8";
+
+.sub-main { padding: 40px 0 70px; }
+.page-heading { text-align: center; padding: 28px 20px; }
+.page-heading .eyebrow { color: #b86c2e; font-weight: bold; letter-spacing: .08em; margin-bottom: 10px; }
+.page-heading h1 { color: chocolate; font-size: 34px; line-height: 1.4; }
+.page-heading .lead { max-width: 760px; margin: 16px auto 0; line-height: 1.9; }
+.breadcrumb { padding: 16px 0 0; font-size: 14px; }
+.breadcrumb a { color: #a85f27; }
+.work-card { background: rgba(255,255,255,.9); border: 2px solid orange; border-radius: 16px; padding: 28px; margin: 30px 0; box-shadow: 0 8px 20px rgba(125,85,35,.12); text-align: left; }
+.work-card h2 { text-align: left; font-size: 27px; line-height: 1.4; }
+.work-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.work-meta span { background: #fff2cc; border: 1px solid #e3b65d; border-radius: 999px; padding: 7px 12px; font-size: 14px; font-weight: bold; }
+.work-description { line-height: 1.9; margin-bottom: 22px; }
+.preview-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 12px; }
+.preview-toolbar p { font-weight: bold; color: #555; }
+.open-button, .tab-button { border: 0; cursor: pointer; font: inherit; font-weight: bold; border-radius: 999px; padding: 11px 18px; transition: .25s; }
+.open-button { display: inline-block; background: rgb(228,74,164); color: white; }
+.open-button:hover { background: #777; }
+.preview-frame { display: block; width: 100%; height: 650px; border: 1px solid #aaa; border-radius: 10px; background: white; }
+.preview-note { margin-top: 12px; font-size: 14px; line-height: 1.7; }
+.compare-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; }
+.compare-links a { display: block; background: #fff8e6; border: 2px solid #e8ae42; border-radius: 12px; padding: 18px; text-align: center; color: #555; font-weight: bold; line-height: 1.5; }
+.compare-links a:hover { background: #ffeab8; }
+.game-tabs { display: flex; gap: 12px; margin: 10px 0 20px; }
+.tab-button { background: #e5e5e5; color: #555; }
+.tab-button.is-active { background: chocolate; color: white; }
+.game-panel[hidden] { display: none; }
+.placeholder { min-height: 440px; display: grid; place-items: center; text-align: center; padding: 30px; background: linear-gradient(135deg,#fff7db,#ffe1ca); color: #754a26; }
+.placeholder strong { display: block; font-size: 26px; margin-bottom: 14px; }
+.placeholder code { display: inline-block; margin-top: 12px; background: rgba(255,255,255,.8); padding: 8px 12px; border-radius: 6px; }
+@media (max-width: 800px) {
+  .inner-1, .inner-2 { width: 100%; }
+  .sub-main { padding: 20px 16px 50px; }
+  .page-heading h1 { font-size: 26px; }
+  .work-card { padding: 18px; }
+  .preview-frame { height: 520px; }
+  .compare-links { grid-template-columns: 1fr; }
+  .preview-toolbar { align-items: flex-start; flex-direction: column; }
+}
+
+/* Works：個人制作準備ページ */
+.coming-soon-card {
+    text-align: center;
+}
+
+.coming-soon-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background-color: #f4a261;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+}
+
+.coming-soon-placeholder {
+    min-height: 320px;
+    margin-top: 28px;
+    border: 3px dashed #e9a23b;
+    border-radius: 18px;
+    background: rgba(255, 248, 225, 0.85);
+    display: grid;
+    place-items: center;
+}
+
+.coming-soon-placeholder p {
+    color: #8a6a3d;
+    font-size: 24px;
+    line-height: 1.8;
+}
+
+.coming-soon-placeholder strong {
+    font-size: 36px;
+    color: chocolate;
+}
+
+/* ================================================================
+   2026.07 下層ページ：レスポンシブ・ワイド画面対応
+   ================================================================ */
+.sub-main {
+    width: min(1280px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.work-card {
+    width: 100%;
+}
+
+.preview-frame {
+    min-height: 420px;
+    height: min(70vh, 760px);
+}
+
+@media (max-width: 700px) {
+    .sub-main {
+        width: min(100% - 24px, 1280px);
+        padding: 18px 0 44px;
+    }
+
+    .page-heading {
+        padding-inline: 0;
+    }
+
+    .page-heading h1 {
+        font-size: clamp(24px, 8vw, 30px);
+    }
+
+    .work-card {
+        margin: 20px 0;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .work-card h2 {
+        font-size: 22px;
+    }
+
+    .preview-frame {
+        height: 62vh;
+        min-height: 380px;
+    }
+
+    .game-tabs {
+        flex-direction: column;
+    }
+
+    .tab-button,
+    .open-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .coming-soon-placeholder {
+        min-height: 240px;
+        padding: 20px;
+    }
+
+    .coming-soon-placeholder p {
+        font-size: 18px;
+    }
+
+    .coming-soon-placeholder strong {
+        font-size: 28px;
+    }
+}
+
+
+/* AIツールごとの検証結果 */
+.ai-review {
+    margin: 24px 0;
+    padding: 22px 24px;
+    border-left: 6px solid chocolate;
+    border-radius: 0 12px 12px 0;
+    background: #fff8e8;
+}
+
+.ai-review h3 {
+    padding: 0 0 12px;
+    color: chocolate;
+    font-size: 21px;
+}
+
+.ai-review p {
+    line-height: 2;
+}
+
+@media (max-width: 600px) {
+    .ai-review {
+        padding: 18px 16px;
+    }
+
+    .ai-review h3 {
+        font-size: 19px;
+    }
+}

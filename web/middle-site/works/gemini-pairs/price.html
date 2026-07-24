@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>料金プラン - Pairs風マッチングサービス</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header__inner">
+            <h1 class="header__logo"><a href="index.html">PairsClone</a></h1>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="price.html" class="active">料金</a></li>
+                    <li><a href="#">安心・安全</a></li>
+                </ul>
+            </nav>
+            <div class="header__cta">
+                <a href="#" class="btn btn--sub">ログイン</a>
+                <a href="#" class="btn btn--main">新規登録</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 下層ヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h2 class="page-header__title">料金プラン</h2>
+            <p class="page-header__lead">あなたに合ったプランで、素敵な出会いを見つけましょう。</p>
+        </div>
+    </section>
+
+    <!-- 料金テーブル -->
+    <section class="price-table-section">
+        <div class="container">
+            <div class="grid grid--3">
+
+                <!-- 無料プラン -->
+                <div class="price-card">
+                    <h3 class="price-card__plan">無料会員</h3>
+                    <p class="price-card__price">¥0</p>
+                    <ul class="price-card__features">
+                        <li>✓ プロフィールの作成</li>
+                        <li>✓ お相手の検索</li>
+                        <li>✓ 「いいね！」送信</li>
+                        <li class="disabled">✗ メッセージの無制限送信</li>
+                    </ul>
+                    <a href="#" class="btn btn--sub btn--full">無料で始める</a>
+                </div>
+
+                <!-- 有料プラン（人気） -->
+                <div class="price-card price-card--popular">
+                    <div class="price-card__badge">人気 No.1</div>
+                    <h3 class="price-card__plan">有料会員（12ヶ月）</h3>
+                    <p class="price-card__price">¥1,650<span> / 月</span></p>
+                    <ul class="price-card__features">
+                        <li>✓ 無料プランの全機能</li>
+                        <li>✓ メッセージ無制限送信</li>
+                        <li>✓ お相手のいいね数表示</li>
+                        <li>✓ 毎月30いいね付与</li>
+                    </ul>
+                    <a href="#" class="btn btn--main btn--full">このプランを選ぶ</a>
+                </div>
+
+                <!-- プレミアムプラン -->
+                <div class="price-card">
+                    <h3 class="price-card__plan">プレミアムプラン</h3>
+                    <p class="price-card__price">¥2,980<span> / 月</span></p>
+                    <ul class="price-card__features">
+                        <li>✓ 有料会員の全機能</li>
+                        <li>✓ 検索結果の上位表示</li>
+                        <li>✓ メッセージ優先審査</li>
+                        <li>✓ オンライン表示を隠す</li>
+                    </ul>
+                    <a href="#" class="btn btn--dark btn--full">プレミアムを試す</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <p class="footer__logo">PairsClone</p>
+            <ul class="footer__links">
+                <li><a href="#">会社概要</a></li>
+                <li><a href="#">利用規約</a></li>
+                <li><a href="#">プライバシーポリシー</a></li>
+            </ul>
+            <p class="footer__copy">&copy; eureka, Inc. All rights reserved. (Clone for Demo)</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

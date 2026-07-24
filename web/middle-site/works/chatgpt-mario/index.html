@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>そらまめアドベンチャー</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="game-container">
+        <h1>そらまめアドベンチャー</h1>
+
+        <p class="description">
+            矢印キーまたはA・Dキーで移動、スペースキーでジャンプ
+        </p>
+
+        <div class="game-wrapper">
+            <canvas id="gameCanvas" width="960" height="540"></canvas>
+
+            <div id="messageScreen" class="message-screen hidden">
+                <div class="message-box">
+                    <h2 id="messageTitle">ゲームオーバー</h2>
+                    <p id="messageText">もう一度挑戦しよう！</p>
+
+                    <button id="restartButton" type="button">
+                        もう一度遊ぶ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <section class="controls">
+            <h2>操作方法</h2>
+
+            <div class="control-list">
+                <span>← → / A D：移動</span>
+                <span>スペース / W / ↑：ジャンプ</span>
+                <span>R：リスタート</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
