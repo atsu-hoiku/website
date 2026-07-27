@@ -266,6 +266,100 @@
             font-size: 0.9rem;
         }
 
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .portfolio-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #dfe8e3;
+            border-radius: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 12px 32px rgba(41, 73, 63, 0.08);
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(41, 73, 63, 0.14);
+        }
+
+        .portfolio-card__label {
+            padding: 14px 22px;
+            background-color: #173b35;
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+        }
+
+        .portfolio-card__body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 28px;
+        }
+
+        .portfolio-card h3 {
+            margin: 0 0 14px;
+            color: #173b35;
+            font-size: 1.4rem;
+        }
+
+        .portfolio-card p {
+            margin: 0 0 22px;
+        }
+
+        .portfolio-info {
+            margin: 0 0 24px;
+            padding: 0;
+        }
+
+        .portfolio-info div {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #e5ece8;
+        }
+
+        .portfolio-info div:last-child {
+            border-bottom: 1px solid #e5ece8;
+        }
+
+        .portfolio-info dt {
+            font-weight: 700;
+            color: #547068;
+        }
+
+        .portfolio-info dd {
+            margin: 0;
+        }
+
+        .portfolio-button {
+            display: block;
+            margin-top: auto;
+            padding: 13px 18px;
+            border-radius: 10px;
+            background-color: #2e8b57;
+            color: #ffffff;
+            text-align: center;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .portfolio-button:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 800px) {
             .header-inner {
                 align-items: flex-start;
@@ -290,6 +384,14 @@
 
             .contact-box {
                 padding: 36px 22px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-info div {
+                grid-template-columns: 80px 1fr;
             }
         }
     </style>
@@ -499,52 +601,108 @@
 
                     <p>
                         職業訓練校で制作したWebサイトを紹介しています。
-                        それぞれのボタンから、実際の制作物をご覧いただけます。
+                        企画・デザイン・コーディングを通して学んだ成果をご覧いただけます。
                     </p>
                 </div>
 
-                <div class="card-grid">
-                    <article class="card">
-                        <h3>個人制作</h3>
+                <div class="portfolio-grid">
 
-                        <p>
-                            HTML・CSS・JavaScriptを使用して制作した、
-                            個人制作のWebサイトです。
-                        </p>
+                    <article class="portfolio-card">
+                        <div class="portfolio-card__label">
+                            PERSONAL WORK
+                        </div>
 
-                        <a class="card-link" href="https://atsu-hoiku.com/web/personal-site/" target="_blank"
-                            rel="noopener noreferrer">
-                            個人制作を見る →
-                        </a>
+                        <div class="portfolio-card__body">
+                            <h3>個人制作</h3>
+
+                            <p>
+                                HTML・CSS・JavaScriptを使用して制作した、
+                                個人制作のWebサイトです。
+                            </p>
+
+                            <dl class="portfolio-info">
+                                <div>
+                                    <dt>制作形態</dt>
+                                    <dd>個人制作</dd>
+                                </div>
+
+                                <div>
+                                    <dt>使用技術</dt>
+                                    <dd>HTML / CSS / JavaScript</dd>
+                                </div>
+                            </dl>
+
+                            <a class="portfolio-button" href="https://atsu-hoiku.com/web/personal-site/" target="_blank"
+                                rel="noopener noreferrer">
+                                個人制作を見る
+                            </a>
+                        </div>
                     </article>
 
-                    <article class="card">
-                        <h3>中間課題</h3>
+                    <article class="portfolio-card">
+                        <div class="portfolio-card__label">
+                            MIDTERM PROJECT
+                        </div>
 
-                        <p>
-                            職業訓練校の中間課題として制作した
-                            Webサイトです。
-                        </p>
+                        <div class="portfolio-card__body">
+                            <h3>中間課題</h3>
 
-                        <a class="card-link" href="https://atsu-hoiku.com/web/middle-site/" target="_blank"
-                            rel="noopener noreferrer">
-                            中間課題を見る →
-                        </a>
+                            <p>
+                                職業訓練校の中間課題として制作したWebサイトです。
+                                学習した内容を組み合わせて形にしました。
+                            </p>
+
+                            <dl class="portfolio-info">
+                                <div>
+                                    <dt>制作形態</dt>
+                                    <dd>個人課題</dd>
+                                </div>
+
+                                <div>
+                                    <dt>使用技術</dt>
+                                    <dd>HTML / CSS / JavaScript</dd>
+                                </div>
+                            </dl>
+
+                            <a class="portfolio-button" href="https://atsu-hoiku.com/web/middle-site/" target="_blank"
+                                rel="noopener noreferrer">
+                                中間課題を見る
+                            </a>
+                        </div>
                     </article>
 
-                    <article class="card">
-                        <h3>グループ制作</h3>
+                    <article class="portfolio-card">
+                        <div class="portfolio-card__label">
+                            GROUP PROJECT
+                        </div>
 
-                        <p>
-                            メンバーと役割分担をしながら、
-                            チームで制作したWebサイトです。
-                        </p>
+                        <div class="portfolio-card__body">
+                            <h3>グループ制作</h3>
 
-                        <a class="card-link" href="https://atsu-hoiku.com/web/group-site/" target="_blank"
-                            rel="noopener noreferrer">
-                            グループ制作を見る →
-                        </a>
+                            <p>
+                                メンバーと役割分担をしながら、
+                                チームで制作したWebサイトです。
+                            </p>
+
+                            <dl class="portfolio-info">
+                                <div>
+                                    <dt>制作形態</dt>
+                                    <dd>グループ制作</dd>
+                                </div>
+
+                                <div>
+                                    <dt>使用技術</dt>
+                                    <dd>HTML / CSS / JavaScript</dd>
+                                </div>
+                            </dl>
+
+                            <a class="portfolio-button" href="https://atsu-hoiku.com/web/group-site/" target="_blank"
+                                rel="noopener noreferrer">
+                                グループ制作を見る
+                            </a>
+                        </div>
                     </article>
+
                 </div>
             </div>
         </section>
