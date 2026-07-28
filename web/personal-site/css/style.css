@@ -1,7 +1,7 @@
+@charset "UTF-8";
+
 /* Healing Match スタイルシート
    セクションごとにコメントで分けています。 */
-
-@charset "UTF-8";
 
 :root {
   --mint: #8ed1c2;
@@ -23,7 +23,13 @@
 }
 
 html {
-  scroll-behavior: auto;
+  /* ブラウザ標準のスムーススクロールを使用 */
+  scroll-behavior: smooth;
+}
+
+/* 固定ヘッダーで見出しが隠れないようにする */
+main section[id] {
+  scroll-margin-top: 104px;
 }
 
 body {
@@ -1005,22 +1011,23 @@ a {
   object-fit: contain;
 }
 
+/* パートナーカードの「詳細を見る」ボタン */
 .partner-detail-button {
   width: 100%;
-  padding: 0;
-  border: 0;
-  color: inherit;
-  background: transparent;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--mint);
+  border-radius: 8px;
+  color: var(--mint-dark);
+  background: var(--mint-pale);
   text-align: center;
+  font-weight: 600;
+  transition: background-color .2s, transform .2s;
 }
 
-.partner-detail-button .partner-image {
-  transition: transform .25s, opacity .25s;
-}
-
-.partner-detail-button:hover .partner-image {
-  transform: scale(1.03);
-  opacity: .88;
+.partner-detail-button:hover {
+  background: #dff4ec;
+  transform: translateY(-1px);
 }
 
 .partner-modal {
@@ -1126,26 +1133,7 @@ body.modal-open {
   background: var(--pink-pale);
 }
 
-.demo-notice {
-  padding: 12px 20px;
-  background-color: #fff3cd;
-  color: #664d03;
-  border-bottom: 1px solid #ffecb5;
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.6;
-}
 
-.demo-notice strong {
-  display: inline-block;
-  margin-right: 8px;
-  font-size: 15px;
-}
-
-.demo-notice p {
-  display: inline;
-  margin: 0;
-}
 
 /* ==================================================
    PC表示：おすすめパートナーは最初5体
@@ -1490,3 +1478,282 @@ body.modal-open {
     font-size: 14px;
   }
 }
+
+
+/* ==================================================
+   バリデーション修正後のレイアウト保護
+   タグ構造を変更してもPC表示が崩れないようにする
+================================================== */
+@media (min-width: 761px) {
+  .diagnosis-steps {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .step-card {
+    flex: 0 0 230px;
+    width: 230px;
+  }
+
+  .diagnosis-panel {
+    width: min(100%, 780px);
+  }
+
+  .question,
+  .diagnosis-result {
+    width: 100%;
+    writing-mode: horizontal-tb;
+    word-break: normal;
+  }
+
+  .question h3,
+  .question p,
+  .diagnosis-result h3,
+  .diagnosis-result p {
+    writing-mode: horizontal-tb;
+    white-space: normal;
+  }
+
+  .voice-slider {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .voice-card {
+    width: auto;
+    min-width: 0;
+  }
+}
+
+.faq-more {
+  position: static;
+  width: fit-content;
+  margin: 16px 0 0 auto;
+}
+
+/* ==================================================
+   Healing Match v1.1
+   表示アニメーション・ホバー演出
+================================================== */
+
+/* JavaScriptで画面内に入った時に表示する要素 */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .65s ease,
+    transform .65s ease;
+}
+
+.reveal-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* カードごとに少しずつ表示を遅らせる */
+.reveal-delay-1 {
+  transition-delay: .08s;
+}
+
+.reveal-delay-2 {
+  transition-delay: .16s;
+}
+
+.reveal-delay-3 {
+  transition-delay: .24s;
+}
+
+.partner-image img {
+  transition: transform .35s ease;
+}
+
+.partner-card:hover .partner-image img {
+  transform: scale(1.05);
+}
+
+.global-nav a:hover {
+  color: var(--mint-dark);
+}
+
+.page-top {
+  transform: translateY(16px);
+}
+
+.page-top.is-visible {
+  transform: translateY(0);
+}
+
+.page-top:hover {
+  transform: translateY(-3px);
+}
+
+/* 動きを減らす設定を利用している方への配慮 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-item,
+  .reveal-item.is-revealed,
+  .partner-image img,
+  .page-top {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ==================================================
+   Healing Match v2.0
+   5問診断・進捗・相性結果
+================================================== */
+
+.diagnosis-progress {
+  margin-bottom: 30px;
+}
+
+.diagnosis-progress-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 8px;
+  color: var(--mint-dark);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.diagnosis-progress-bar,
+.compatibility-bar {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8eee9;
+}
+
+.diagnosis-progress-bar span,
+.compatibility-bar span {
+  display: block;
+  width: 20%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--mint-dark), var(--mint));
+  transition: width .35s ease;
+}
+
+.question h3 {
+  margin: 0;
+  font-size: clamp(20px, 2vw, 27px);
+}
+
+.answer-grid button {
+  transition:
+    transform .2s ease,
+    background-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.answer-grid button:hover {
+  transform: translateY(-2px);
+  background: #dff4ec;
+  box-shadow: 0 7px 16px rgba(22, 157, 134, .12);
+}
+
+.result-lead {
+  margin-top: 0;
+  color: #666;
+}
+
+.result-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 34px;
+  align-items: center;
+  margin: 24px 0 30px;
+  text-align: left;
+}
+
+.result-layout .result-image {
+  width: 230px;
+  height: 230px;
+  margin: 0;
+}
+
+.result-type {
+  margin: 0 0 4px;
+  color: var(--mint-dark);
+  font-weight: 700;
+}
+
+.result-detail h3 {
+  margin: 0 0 18px;
+  font-size: 30px;
+}
+
+.compatibility {
+  margin-bottom: 20px;
+}
+
+.compatibility-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 7px;
+}
+
+.compatibility-head strong {
+  color: var(--pink);
+  font-size: 24px;
+}
+
+.compatibility-bar span {
+  width: 0;
+  background: linear-gradient(90deg, var(--pink), #f7b5c3);
+}
+
+.result-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result-tags li {
+  padding: 5px 12px;
+  border-radius: 999px;
+  color: var(--mint-dark);
+  background: var(--mint-pale);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.diagnosis-result .diagnosis-reset {
+  margin-inline: auto;
+}
+
+@media (max-width: 760px) {
+  main section[id] {
+    scroll-margin-top: 86px;
+  }
+
+  .result-layout {
+    display: block;
+    text-align: center;
+  }
+
+  .result-layout .result-image {
+    width: 210px;
+    height: 210px;
+    margin: 0 auto 22px;
+  }
+
+  .result-tags {
+    justify-content: center;
+  }
+}
+

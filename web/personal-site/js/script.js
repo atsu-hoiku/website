@@ -1,79 +1,72 @@
 /* Healing Match JavaScript
-   機能ごとにコメントで分けています。 */
+   v1.1：標準スムーススクロール・表示アニメーション
+   v2.0：5問診断・相性度・おすすめポイント
+*/
 
 $(function () {
-  // ハンバーガーメニュー
-  $(".menu-button").on("click", function () {
+  const $window = $(window);
+  const $header = $(".site-header");
+  const $globalNav = $(".global-nav");
+  const $menuButton = $(".menu-button");
+  const $pageTop = $(".page-top");
+  const $partnerTrack = $(".partner-track");
+
+  /* ==================================================
+     1. ハンバーガーメニュー
+  ================================================== */
+  $menuButton.on("click", function () {
     const isOpen = $(this).toggleClass("is-open").hasClass("is-open");
+
     $(this).attr("aria-expanded", isOpen);
-    $(".global-nav").stop(true, true).slideToggle(220);
+    $globalNav.stop(true, true).slideToggle(180);
   });
 
-  // スマホメニューから移動したら閉じる
+  /* スマートフォンでナビを押したらメニューを閉じる */
   $(".global-nav a").on("click", function () {
     if (window.matchMedia("(max-width: 760px)").matches) {
-      $(".global-nav").slideUp(180);
-      $(".menu-button").removeClass("is-open").attr("aria-expanded", "false");
+      $globalNav.stop(true, true).slideUp(160);
+      $menuButton
+        .removeClass("is-open")
+        .attr("aria-expanded", "false");
     }
   });
 
-  // 画面幅変更時のナビゲーション調整
-  $(window).on("resize", function () {
+  /* PC幅に戻した時にスマートフォン用のstyle属性を解除 */
+  $window.on("resize", function () {
     if (window.innerWidth > 760) {
-      $(".global-nav").removeAttr("style");
-      $(".menu-button").removeClass("is-open").attr("aria-expanded", "false");
+      $globalNav.removeAttr("style");
+      $menuButton
+        .removeClass("is-open")
+        .attr("aria-expanded", "false");
     }
   });
 
   /* ==================================================
-     なめらかなスクロール
-     requestAnimationFrameでカクつきを抑える
+     2. ページ内スクロール
+     CSSのscroll-behaviorとブラウザ標準機能に統一
   ================================================== */
-  let scrollAnimationId = null;
 
-  function smoothScrollTo(targetY, duration = 520) {
-    if (scrollAnimationId) cancelAnimationFrame(scrollAnimationId);
-
-    const startY = window.pageYOffset;
-    const distance = targetY - startY;
-    const startTime = performance.now();
-
-    function easeInOutCubic(progress) {
-      return progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-    }
-
-    function animate(currentTime) {
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      window.scrollTo(0, startY + distance * easeInOutCubic(progress));
-
-      if (progress < 1) {
-        scrollAnimationId = requestAnimationFrame(animate);
-      } else {
-        scrollAnimationId = null;
-      }
-    }
-
-    scrollAnimationId = requestAnimationFrame(animate);
-  }
-
-  $('a[href^="#"]').on("click", function (event) {
-    const href = $(this).attr("href");
-    if (!href || href === "#") { event.preventDefault(); return; }
-
-    const $target = $(href);
-    if ($target.length) {
-      event.preventDefault();
-      const headerHeight = $(".site-header").outerHeight() || 0;
-      smoothScrollTo(Math.max(0, $target.offset().top - headerHeight - 8));
-    }
+  /* href="#"だけの仮リンクはページ上部へ飛ばさない */
+  $('a[href="#"]').on("click", function (event) {
+    event.preventDefault();
   });
 
-  // 現在位置に応じてナビを強調
+  /* TOPボタン */
+  $pageTop.on("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
+  /* ==================================================
+     3. スクロール位置によるナビ強調とTOPボタン
+  ================================================== */
   const $sections = $("main section[id]");
-  $(window).on("scroll", function () {
-    const scrollY = $(this).scrollTop() + 140;
+  let scrollTicking = false;
+
+  function updateScrollState() {
+    const scrollY = window.pageYOffset + 140;
     let currentId = "home";
 
     $sections.each(function () {
@@ -85,39 +78,92 @@ $(function () {
     $(".global-nav a").removeClass("is-active");
     $('.global-nav a[href="#' + currentId + '"]').addClass("is-active");
 
-    $(".page-top").toggleClass("is-visible", scrollY > 700);
+    $pageTop.toggleClass("is-visible", scrollY > 700);
+    scrollTicking = false;
+  }
+
+  $window.on("scroll", function () {
+    if (!scrollTicking) {
+      requestAnimationFrame(updateScrollState);
+      scrollTicking = true;
+    }
   });
 
-  /* ページトップボタン */
-  $(".page-top").on("click", function () {
-    smoothScrollTo(0);
+  updateScrollState();
+
+  /* ==================================================
+     4. v1.1：スクロール表示アニメーション
+  ================================================== */
+  const revealSelectors = [
+    ".intro-photo-inner",
+    ".feature-card",
+    ".partner-card",
+    ".step-card",
+    ".voice-card",
+    ".faq-item",
+    ".partners-cta-inner",
+    ".contact-form"
+  ].join(",");
+
+  const $revealItems = $(revealSelectors).addClass("reveal-item");
+
+  /* 同じ並びのカードは少しずつ遅れて表示 */
+  $(".feature-card, .step-card, .voice-card").each(function (index) {
+    $(this).addClass("reveal-delay-" + ((index % 3) + 1));
   });
 
-  // パートナーカルーセル
-  const $track = $(".partner-track");
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
 
+    $revealItems.each(function () {
+      revealObserver.observe(this);
+    });
+  } else {
+    $revealItems.addClass("is-revealed");
+  }
+
+  /* ==================================================
+     5. パートナーカルーセル・もっと見る
+  ================================================== */
   $(".carousel-arrow.next").on("click", function () {
     const amount = $(".partner-card").first().outerWidth(true);
-    $track.animate({ scrollLeft: $track.scrollLeft() + amount }, 300);
+
+    $partnerTrack.stop(true).animate({
+      scrollLeft: $partnerTrack.scrollLeft() + amount
+    }, 260);
   });
 
   $(".carousel-arrow.prev").on("click", function () {
     const amount = $(".partner-card").first().outerWidth(true);
-    $track.animate({ scrollLeft: $track.scrollLeft() - amount }, 300);
+
+    $partnerTrack.stop(true).animate({
+      scrollLeft: $partnerTrack.scrollLeft() - amount
+    }, 260);
   });
 
   $(".partner-more").on("click", function () {
     const $button = $(this);
-    const isExpanded = $(".partner-track").toggleClass("is-expanded")
+    const isExpanded = $partnerTrack
+      .toggleClass("is-expanded")
       .hasClass("is-expanded");
 
-    $button.text(isExpanded ? "閉じる" : "もっと見る");
-
-    const targetY = $("#partners").offset().top - ($(".site-header").outerHeight() || 0) - 18;
-    smoothScrollTo(Math.max(0, targetY), 420);
+    $button
+      .text(isExpanded ? "閉じる" : "もっと見る")
+      .attr("aria-expanded", isExpanded);
   });
 
-  // パートナー詳細モーダル
+  /* ==================================================
+     6. パートナー詳細モーダル
+  ================================================== */
   $(".partner-detail-button").on("click", function () {
     const $card = $(this).closest(".partner-card");
 
@@ -135,6 +181,7 @@ $(function () {
       .attr("aria-hidden", "false");
 
     $("body").addClass("modal-open");
+    $(".partner-modal-close").trigger("focus");
   });
 
   function closePartnerModal() {
@@ -154,105 +201,212 @@ $(function () {
     }
   });
 
-  // 診断
-  let scores = { animal: 0, plush: 0, robot: 0 };
+  /* ==================================================
+     7. v2.0：5問の癒しパートナー診断
+  ================================================== */
+  const totalQuestions = 5;
+  let scores = {
+    animal: 0,
+    plush: 0,
+    robot: 0
+  };
   let currentStep = 1;
 
-  $(".diagnosis-start").on("click", function () {
-    scores = { animal: 0, plush: 0, robot: 0 };
+  const resultData = {
+    animal: {
+      image: "images/partner-dog.jpeg",
+      alt: "犬の癒しパートナー",
+      type: "元気なアニマルタイプ",
+      name: "わん太",
+      text: "一緒に動いたり笑ったりできる、明るいパートナーとの相性がよさそうです。疲れた日も、前向きなエネルギーを届けてくれます。",
+      tags: ["元気", "ぬくもり", "アクティブ"]
+    },
+    plush: {
+      image: "images/partner-bear.jpeg",
+      alt: "クマのぬいぐるみの癒しパートナー",
+      type: "安心ぬいぐるみタイプ",
+      name: "くまのモコ",
+      text: "静かに寄り添ってくれる存在との相性がよさそうです。何も話さなくても、ほっと安心できる時間を作ってくれます。",
+      tags: ["安心感", "見守り", "リラックス"]
+    },
+    robot: {
+      image: "images/feature-ai-robot.jpeg",
+      alt: "会話や見守りをしてくれるロボット",
+      type: "おしゃべりロボットタイプ",
+      name: "きょうちゃん",
+      text: "言葉や反応で気持ちを支えてくれるパートナーとの相性がよさそうです。会話を通して、毎日の小さな変化にも寄り添ってくれます。",
+      tags: ["会話", "励まし", "好奇心"]
+    }
+  };
+
+  function updateDiagnosisProgress(step) {
+    const percent = Math.round((step / totalQuestions) * 100);
+
+    $(".diagnosis-progress-label")
+      .text("QUESTION " + step + " / " + totalQuestions);
+
+    $(".diagnosis-progress-percent")
+      .text(percent + "%");
+
+    $(".diagnosis-progress-bar span")
+      .css("width", percent + "%");
+  }
+
+  function resetDiagnosis() {
+    scores = {
+      animal: 0,
+      plush: 0,
+      robot: 0
+    };
+
     currentStep = 1;
+
     $(".diagnosis-result").hide();
     $(".question").hide();
     $('.question[data-step="1"]').show();
-    $(".diagnosis-panel").stop(true, true).slideDown(240, function () {
-      const targetY = $(".diagnosis-panel").offset().top - ($(".site-header").outerHeight() || 0) - 20;
-      smoothScrollTo(Math.max(0, targetY), 420);
-    });
+    updateDiagnosisProgress(1);
+  }
+
+  $(".diagnosis-start").on("click", function () {
+    resetDiagnosis();
+
+    $(".diagnosis-panel")
+      .stop(true, true)
+      .slideDown(220, function () {
+        this.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
   });
 
   $(".answer-grid button").on("click", function () {
     const type = $(this).data("type");
     scores[type] += 1;
 
-    if (currentStep < 3) {
-      $('.question[data-step="' + currentStep + '"]').fadeOut(150, function () {
-        currentStep += 1;
-        $('.question[data-step="' + currentStep + '"]').fadeIn(180);
-      });
+    if (currentStep < totalQuestions) {
+      $('.question[data-step="' + currentStep + '"]')
+        .fadeOut(120, function () {
+          currentStep += 1;
+          updateDiagnosisProgress(currentStep);
+
+          $('.question[data-step="' + currentStep + '"]')
+            .fadeIn(160);
+        });
     } else {
-      $(".question").fadeOut(150, showResult);
+      $(".question").fadeOut(120, showDiagnosisResult);
     }
   });
 
-  function showResult() {
-    const resultType = Object.keys(scores).reduce(function (a, b) {
-      return scores[a] >= scores[b] ? a : b;
-    });
+  function showDiagnosisResult() {
+    const resultType = Object.keys(scores).reduce(function (bestType, type) {
+      return scores[type] > scores[bestType] ? type : bestType;
+    }, "animal");
 
-    const resultData = {
-      animal: {
-        image: "images/partner-dog.jpeg",
-        alt: "犬の癒しパートナー",
-        title: "元気なアニマルタイプ",
-        text: "明るく元気なパートナーが、毎日に笑顔を届けてくれそうです。"
-      },
-
-      plush: {
-        image: "images/partner-bear.jpeg",
-        alt: "クマのぬいぐるみの癒しパートナー",
-        title: "安心ぬいぐるみタイプ",
-        text: "静かに寄り添ってくれる存在が、安心できる時間を作ってくれそうです。"
-      },
-
-      robot: {
-        image: "images/feature-ai-robot.jpeg",
-        alt: "会話や見守りをしてくれるロボット",
-        title: "おしゃべりロボットタイプ",
-        text: "話を聞いてくれる相棒が、あなたの毎日を優しく支えてくれそうです。"
-      }
-    };
-
+    const bestScore = scores[resultType];
+    const compatibility = Math.min(98, 73 + (bestScore * 5));
     const data = resultData[resultType];
+
     $(".result-image img")
       .attr("src", data.image)
       .attr("alt", data.alt);
 
-    $(".diagnosis-result h3").text(data.title);
+    $(".result-type").text(data.type);
+    $(".diagnosis-result h3").text(data.name);
     $(".result-text").text(data.text);
-    $(".diagnosis-result").fadeIn(250);
+    $(".compatibility-score").text(compatibility);
+
+    $(".result-tags").empty();
+    data.tags.forEach(function (tag) {
+      $("<li>").text(tag).appendTo(".result-tags");
+    });
+
+    $(".diagnosis-progress-label").text("RESULT");
+    $(".diagnosis-progress-percent").text("100%");
+    $(".diagnosis-progress-bar span").css("width", "100%");
+
+    $(".diagnosis-result").fadeIn(220, function () {
+      $(".compatibility-bar span")
+        .css("width", compatibility + "%");
+    });
   }
 
   $(".diagnosis-reset").on("click", function () {
-    $(".diagnosis-start").trigger("click");
+    resetDiagnosis();
+
+    $(".compatibility-bar span").css("width", "0");
+
+    $(".diagnosis-panel")[0].scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   });
 
-  // 利用者の声
+  /* ==================================================
+     8. 利用者の声
+  ================================================== */
   $(".slider-dots button").on("click", function () {
     const index = $(this).index();
-    $(".slider-dots button").removeClass("is-active").eq(index).addClass("is-active");
-    $(".voice-card").removeClass("is-current").eq(index).addClass("is-current");
+
+    $(".slider-dots button")
+      .removeClass("is-active")
+      .eq(index)
+      .addClass("is-active");
+
+    $(".voice-card")
+      .removeClass("is-current")
+      .eq(index)
+      .addClass("is-current");
   });
 
-  // FAQアコーディオン
+  /* ==================================================
+     9. FAQアコーディオン
+  ================================================== */
   $(".faq-question").on("click", function () {
     const $button = $(this);
     const $answer = $button.next(".faq-answer");
     const isOpen = $button.attr("aria-expanded") === "true";
 
-    $(".faq-question").not($button).attr("aria-expanded", "false");
-    $(".faq-answer").not($answer).slideUp(180);
+    $(".faq-question")
+      .not($button)
+      .attr("aria-expanded", "false");
+
+    $(".faq-answer")
+      .not($answer)
+      .stop(true, true)
+      .slideUp(160);
 
     $button.attr("aria-expanded", !isOpen);
-    $answer.stop(true, true).slideToggle(180);
+    $answer.stop(true, true).slideToggle(160, updateFaqAllButton);
   });
+
+  function updateFaqAllButton() {
+    const allOpen =
+      $(".faq-question").length ===
+      $('.faq-question[aria-expanded="true"]').length;
+
+    $(".faq-more")
+      .text(allOpen ? "すべて閉じる" : "すべて開く")
+      .attr("aria-expanded", allOpen);
+  }
 
   $(".faq-more").on("click", function () {
-    $(".faq-question").attr("aria-expanded", "true");
-    $(".faq-answer").slideDown(180);
-    $(this).hide();
+    const isExpanded = $(this).attr("aria-expanded") === "true";
+
+    if (isExpanded) {
+      $(".faq-question").attr("aria-expanded", "false");
+      $(".faq-answer").stop(true, true).slideUp(160);
+    } else {
+      $(".faq-question").attr("aria-expanded", "true");
+      $(".faq-answer").stop(true, true).slideDown(160);
+    }
+
+    updateFaqAllButton();
   });
 
-  // お問い合わせフォーム（デモ）
+  /* ==================================================
+     10. お問い合わせフォーム
+  ================================================== */
   $(".contact-form").on("submit", function (event) {
     event.preventDefault();
 
@@ -269,7 +423,7 @@ $(function () {
     let hasError = false;
 
     $(".field-error").text("");
-    $(".form-message").text("");
+    $(".form-message").text("").css("color", "");
     $form.find("input, textarea").removeClass("is-error");
 
     if (!name) {
@@ -303,7 +457,7 @@ $(function () {
     }
 
     if (hasError) {
-      $form.find(".is-error").first().focus();
+      $form.find(".is-error").first().trigger("focus");
       return;
     }
 
