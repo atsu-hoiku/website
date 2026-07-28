@@ -1,758 +1,1158 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI × 保育 × 教育｜きりん先生</title>
+  <meta charset="UTF-8">
 
-    <meta name="description" content="元園長・保育士のきりん先生が、16年以上の保育・教育経験をもとに、AI活用やWeb制作、保育実践について発信するサイトです。">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <meta name="description" content="あなたにぴったりの癒しパートナーが見つかる Healing Match">
 
-        html {
-            scroll-behavior: smooth;
-        }
+  <title>Healing Match</title>
 
-        body {
-            margin: 0;
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                "Noto Sans JP",
-                sans-serif;
-            color: #243238;
-            background-color: #f7faf8;
-            line-height: 1.8;
-        }
+  <link rel="icon" href="images/favicon.png">
 
-        a {
-            color: inherit;
-        }
+  <link rel="stylesheet" href="css/style.css">
 
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        .container {
-            width: min(1100px, 90%);
-            margin: 0 auto;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.96);
-            border-bottom: 1px solid #dfe8e3;
-        }
-
-        .header-inner {
-            min-height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
-
-        .site-logo {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #173b35;
-            text-decoration: none;
-        }
-
-        .global-nav ul {
-            display: flex;
-            gap: 24px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .global-nav a {
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #334a46;
-        }
-
-        .global-nav a:hover {
-            color: #2e8b57;
-        }
-
-        .hero {
-            padding: 110px 0 100px;
-            background:
-                linear-gradient(135deg,
-                    rgba(229, 244, 235, 0.96),
-                    rgba(232, 240, 249, 0.96));
-        }
-
-        .hero-inner {
-            max-width: 800px;
-        }
-
-        .hero-label {
-            display: inline-block;
-            margin-bottom: 18px;
-            padding: 6px 14px;
-            border-radius: 999px;
-            background-color: #ffffff;
-            color: #2e6f5e;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .hero h1 {
-            margin: 0 0 24px;
-            font-size: clamp(2.4rem, 7vw, 4.8rem);
-            line-height: 1.2;
-            color: #173b35;
-        }
-
-        .hero p {
-            max-width: 680px;
-            margin: 0 0 32px;
-            font-size: 1.1rem;
-        }
-
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 13px 24px;
-            border-radius: 10px;
-            background-color: #2e8b57;
-            color: #ffffff;
-            font-weight: 700;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .button:hover {
-            opacity: 0.88;
-            transform: translateY(-2px);
-        }
-
-        .button-secondary {
-            background-color: #173b35;
-        }
-
-        section {
-            padding: 88px 0;
-        }
-
-        section:nth-of-type(even) {
-            background-color: #ffffff;
-        }
-
-        .section-heading {
-            margin-bottom: 42px;
-        }
-
-        .section-heading span {
-            display: block;
-            margin-bottom: 8px;
-            color: #2e8b57;
-            font-size: 0.85rem;
-            font-weight: 800;
-            letter-spacing: 0.14em;
-        }
-
-        .section-heading h2 {
-            margin: 0;
-            font-size: clamp(1.9rem, 4vw, 2.8rem);
-            color: #173b35;
-        }
-
-        .section-heading p {
-            max-width: 720px;
-            margin: 16px 0 0;
-        }
-
-        .profile-box {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .profile-image {
-            min-height: 280px;
-            display: grid;
-            place-items: center;
-            border-radius: 20px;
-            background-color: #dfeee6;
-            color: #53756b;
-            font-weight: 700;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .card {
-            padding: 28px;
-            border: 1px solid #dfe8e3;
-            border-radius: 16px;
-            background-color: #ffffff;
-            box-shadow: 0 10px 30px rgba(41, 73, 63, 0.06);
-        }
-
-        .card h3 {
-            margin: 0 0 14px;
-            color: #173b35;
-            font-size: 1.25rem;
-        }
-
-        .card p {
-            margin: 0;
-        }
-
-        .card-link {
-            display: inline-block;
-            margin-top: 18px;
-            color: #2e8b57;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .tool-list {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .tool-item {
-            padding: 24px 18px;
-            border-radius: 14px;
-            background-color: #edf5f1;
-            text-align: center;
-            font-weight: 700;
-            color: #244b42;
-        }
-
-        .contact-box {
-            padding: 52px;
-            border-radius: 24px;
-            background-color: #173b35;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .contact-box h2 {
-            margin-top: 0;
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-        }
-
-        footer {
-            padding: 28px 0;
-            background-color: #102c28;
-            color: #dceae5;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-
-        .portfolio-card {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid #dfe8e3;
-            border-radius: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 12px 32px rgba(41, 73, 63, 0.08);
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 18px 40px rgba(41, 73, 63, 0.14);
-        }
-
-        .portfolio-card__label {
-            padding: 14px 22px;
-            background-color: #173b35;
-            color: #ffffff;
-            font-size: 0.78rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-        }
-
-        .portfolio-card__body {
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-            padding: 28px;
-        }
-
-        .portfolio-card h3 {
-            margin: 0 0 14px;
-            color: #173b35;
-            font-size: 1.4rem;
-        }
-
-        .portfolio-card p {
-            margin: 0 0 22px;
-        }
-
-        .portfolio-info {
-            margin: 0 0 24px;
-            padding: 0;
-        }
-
-        .portfolio-info div {
-            display: grid;
-            grid-template-columns: 90px 1fr;
-            gap: 10px;
-            padding: 10px 0;
-            border-top: 1px solid #e5ece8;
-        }
-
-        .portfolio-info div:last-child {
-            border-bottom: 1px solid #e5ece8;
-        }
-
-        .portfolio-info dt {
-            font-weight: 700;
-            color: #547068;
-        }
-
-        .portfolio-info dd {
-            margin: 0;
-        }
-
-        .portfolio-button {
-            display: block;
-            margin-top: auto;
-            padding: 13px 18px;
-            border-radius: 10px;
-            background-color: #2e8b57;
-            color: #ffffff;
-            text-align: center;
-            font-weight: 700;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .portfolio-button:hover {
-            opacity: 0.88;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 800px) {
-            .header-inner {
-                align-items: flex-start;
-                flex-direction: column;
-                padding: 18px 0;
-            }
-
-            .global-nav ul {
-                flex-wrap: wrap;
-                gap: 12px 18px;
-            }
-
-            .hero {
-                padding: 80px 0 72px;
-            }
-
-            .profile-box,
-            .card-grid,
-            .tool-list {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-box {
-                padding: 36px 22px;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .portfolio-info div {
-                grid-template-columns: 80px 1fr;
-            }
-        }
-    </style>
 </head>
 
+
+
 <body>
-    <header>
-        <div class="container header-inner">
-            <a class="site-logo" href="https://atsu-hoiku.com/#top">
-                AI × 保育 × 教育
-            </a>
+  <!--
+    Healing Match v2.0
+    v1.1：動き・ホバー・表示アニメーションを改善
+    v2.0：5問診断・相性度・おすすめポイントを追加
+  -->
 
-            <nav class="global-nav" aria-label="メインナビゲーション">
-                <ul>
-                    <li><a href="https://atsu-hoiku.com/#profile">自己紹介</a></li>
-                    <li><a href="https://atsu-hoiku.com/#ai">AI活用</a></li>
-                    <li><a href="https://atsu-hoiku.com/#column">保育・教育</a></li>
-                    <li><a href="https://atsu-hoiku.com/#web">Web制作</a></li>
-                    <li><a href="https://atsu-hoiku.com/#tools">AIツール</a></li>
-                    <li><a href="https://atsu-hoiku.com/#contact">お問い合わせ</a></li>
-                </ul>
-            </nav>
+
+
+  <!-- ========================= ヘッダー ========================= -->
+
+
+
+  <header class="site-header">
+
+    <div class="header-inner">
+
+      <a class="logo" href="#home" aria-label="Healing Match トップへ">
+
+        <img src="images/logo.png" alt="Healing Match">
+
+      </a>
+
+
+
+      <button class="menu-button" type="button" aria-label="メニューを開閉" aria-expanded="false">
+
+        <span></span><span></span><span></span>
+
+      </button>
+
+
+
+      <nav class="global-nav" aria-label="メインナビゲーション">
+
+        <ul>
+
+          <li><a class="is-active" href="#home">HOME</a></li>
+
+          <li><a href="#features">サービス紹介</a></li>
+
+          <li><a href="#partners">パートナー紹介</a></li>
+
+          <li><a href="#diagnosis">診断</a></li>
+
+          <li><a href="#voices">利用者の声</a></li>
+
+          <li><a href="#faq">FAQ</a></li>
+
+          <li><a href="#contact">お問い合わせ</a></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ========================= メインコンテンツ ========================= -->
+
+  <main>
+
+    <!-- メインビジュアル -->
+
+    <section class="hero" id="home">
+
+      <span class="hero-deco hero-heart-a">♥</span>
+
+      <span class="hero-deco hero-heart-b">♥</span>
+
+      <img class="hero-deco hero-paw-a" src="images/favicon.png" alt="">
+
+      <img class="hero-deco hero-paw-b" src="images/favicon.png" alt="">
+
+
+
+      <div class="hero-inner">
+
+        <h1>あなたにぴったりの<br><em>癒し</em>パートナーが見つかる♡</h1>
+
+        <a class="button button-primary" href="#diagnosis"><span>▶</span> 今すぐ診断してみる</a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- 写真と文章を左右に分けたコンセプト紹介 -->
+
+    <section class="intro-photo">
+
+      <div class="container">
+
+        <div class="intro-photo-inner">
+
+          <div class="intro-photo-image">
+
+            <img src="images/hero-partners-wide.jpeg" alt="さまざまな癒しパートナーたち">
+
+          </div>
+
+          <div class="intro-photo-text">
+
+            <p class="eyebrow">いろいろな個性の中から</p>
+
+            <h2>今日のあなたに合う<br>パートナーを見つけよう</h2>
+
+            <p>元気をくれる相手、静かに寄り添う相手、話を聞いてくれる相手。Healing Matchは、今のあなたに必要な癒しとの出会いをお手伝いします。</p>
+
+          </div>
+
         </div>
-    </header>
 
-    <main id="top">
-        <section class="hero">
-            <div class="container hero-inner">
-                <span class="hero-label">
-                    保育現場から考える、これからの学びと働き方
-                </span>
+      </div>
 
-                <h1>AI × 保育 × 教育</h1>
+    </section>
 
-                <p>
-                    元園長・保育士の「きりん先生」が、
-                    16年以上の保育・教育経験をもとに、
-                    AI活用やWeb制作、日々の実践について発信しています。
-                    現場で本当に使える工夫を、分かりやすく届けるサイトです。
+
+
+    <!-- サービスの特徴 -->
+
+    <section class="section features" id="features">
+
+      <div class="container">
+
+        <h2 class="section-title">
+
+          <img src="images/favicon.png" alt="" class="paw-icon">
+
+          サービスの特徴
+
+        </h2>
+
+        <div class="feature-grid">
+
+          <!-- 特徴1：オリジナル写真 -->
+
+          <article class="feature-card">
+
+            <div class="feature-photo feature-photo-pink">
+
+              <img src="images/about-shisa.jpeg" alt="笑顔のシーサー">
+
+            </div>
+
+            <h3>癒しを目的にした<br>新しいマッチング</h3>
+
+          </article>
+
+          <article class="feature-card">
+
+            <div class="feature-photo feature-photo-ai">
+
+              <img src="images/feature-ai-robot.jpeg" alt="会話や見守りをしてくれるAIロボット">
+
+            </div>
+
+            <h3>動物・ぬいぐるみ・<br>AIロボットから選べる</h3>
+
+          </article>
+
+          <article class="feature-card">
+
+            <div class="feature-photo">
+
+              <img src="images/partner-bee.jpeg" alt="ミツバチ風の癒しパートナー">
+
+            </div>
+
+            <h3>あなたに寄り添う<br>パートナーが見つかる</h3>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- おすすめパートナー：PCは5体→10体 -->
+
+    <section class="section partners" id="partners">
+
+      <div class="container">
+
+        <div class="section-heading-row">
+
+          <h2 class="section-title">
+
+            <img src="images/favicon.png" alt="" class="paw-icon">
+
+            おすすめのパートナー
+
+          </h2>
+
+          <button class="text-link partner-more" type="button" aria-expanded="false">もっと見る</button>
+
+        </div>
+
+
+
+        <div class="partner-carousel">
+
+          <button class="carousel-arrow prev" type="button" aria-label="前へ">‹</button>
+
+          <div class="partner-track">
+
+
+
+            <article class="partner-card" data-name="くまのモコ" data-image="images/partner-bear.jpeg" data-type="安心・包容力タイプ"
+              data-description="どんな日も静かにそばにいてくれる、包容力たっぷりのパートナー。疲れている時や、安心してゆっくり休みたい時におすすめです。"
+              data-best="仕事や家事のあとに、ほっと落ち着きたい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-bear.jpeg" alt="クマの癒しパートナー">
+
+              </div>
+
+
+
+
+              <h3>くまのモコ</h3>
+
+
+
+
+              <p>包容力のある、のんびり屋さん</p>
+
+
+
+
+              <div class="rating">●●●●●</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="ぱんだまる" data-image="images/partner-panda.jpeg" data-type="見守りタイプ"
+              data-description="見ているだけで心がほっとする、癒し系パートナー。何も話さなくても、そばにいるだけで安心できる存在です。" data-best="のんびり過ごしたい方や、ゆっくり癒されたい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-panda.jpeg" alt="ぱんだまる">
+
+              </div>
+
+
+
+
+              <h3>ぱんだまる</h3>
+
+
+
+
+              <p>見ているだけで癒される人気者</p>
+
+
+
+
+              <div class="rating">●●●●●</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="かめ吉" data-image="images/partner-turtle.jpeg" data-type="マイペースタイプ"
+              data-description="焦らなくて大丈夫。あなたのペースを大切にして、ゆっくり寄り添ってくれるパートナーです。" data-best="毎日忙しく、少し休憩したい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-turtle.jpeg" alt="かめ吉">
+
+              </div>
+
+
+
+
+              <h3>かめ吉</h3>
+
+
+
+
+              <p>ゆっくり寄り添うマイペース派</p>
+
+
+
+
+              <div class="rating">●●●●○</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="ぞう太" data-image="images/partner-elephant.jpeg"
+              data-type="頼れるサポートタイプ" data-description="優しく頼れる存在。落ち込んだ時でも、大きな心であなたを支えてくれます。" data-best="誰かに背中を押してほしい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-elephant.jpeg" alt="ぞう太">
+
+              </div>
+
+
+
+
+              <h3>ぞう太</h3>
+
+
+
+
+              <p>優しくて頼れる力持ち</p>
+
+
+
+
+              <div class="rating">●●●●○</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="かばみ" data-image="images/partner-hippo.jpeg" data-type="聞き上手タイプ"
+              data-description="どんな話でも最後まで聞いてくれる、安心感たっぷりの癒しパートナーです。" data-best="話を聞いてもらいたい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-hippo.jpeg" alt="かばみ">
+
+              </div>
+
+
+
+
+              <h3>かばみ</h3>
+
+
+
+
+              <p>どんな話も聞いてくれる聞き上手</p>
+
+
+
+
+              <div class="rating">●●●●○</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="わん太" data-image="images/partner-dog.jpeg" data-type="元気応援タイプ"
+              data-description="明るく元気いっぱい！あなたの毎日に笑顔とパワーを届けてくれる存在です。" data-best="気分転換したい方や元気がほしい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-dog.jpeg" alt="わん太">
+
+              </div>
+
+
+
+
+              <h3>わん太</h3>
+
+
+
+
+              <p>元気いっぱいで人なつっこい</p>
+
+
+
+
+              <div class="rating">●●●●●</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="けろ助" data-image="images/partner-frog.jpeg" data-type="笑顔タイプ"
+              data-description="見ているだけで思わず笑顔に。ユニークな表情で気持ちを明るくしてくれます。" data-best="毎日を楽しく過ごしたい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-frog.jpeg" alt="けろ助">
+
+              </div>
+
+
+
+
+              <h3>けろ助</h3>
+
+
+
+
+              <p>みんなを笑顔にするムードメーカー</p>
+
+
+
+
+              <div class="rating">●●●●●</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="きょうちゃん" data-image="images/partner-dinosaur.jpeg" data-type="冒険タイプ"
+              data-description="新しいことに挑戦する勇気をくれるパートナー。毎日をワクワクした気持ちで過ごせます。" data-best="新しい趣味や挑戦を始めたい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-dinosaur.jpeg" alt="きょうちゃん">
+
+              </div>
+
+
+
+
+              <h3>きょうちゃん</h3>
+
+
+
+
+              <p>好奇心旺盛な冒険好き</p>
+
+
+
+
+              <div class="rating">●●●●○</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="のるるん" data-image="images/partner-norurun.jpeg" data-type="おっとりタイプ"
+              data-description="ゆるっとした雰囲気で、焦る気持ちを落ち着かせてくれる癒し担当です。" data-best="のんびりした時間を楽しみたい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-norurun.jpeg" alt="のるるん">
+
+              </div>
+
+
+
+
+              <h3>のるるん</h3>
+
+
+
+
+              <p>おっとり優しい癒し担当</p>
+
+
+
+
+              <div class="rating">●●●●●</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+
+
+            <article class="partner-card" data-name="わに丸" data-image="images/partner-crocodile.jpeg"
+              data-type="守ってくれるタイプ" data-description="少し強そうな見た目だけど、とても優しいパートナー。あなたをしっかり見守ってくれます。"
+              data-best="頼れる存在がそばにいてほしい方">
+
+
+
+              <div class="partner-image">
+
+                <img src="images/partner-crocodile.jpeg" alt="わに丸">
+
+              </div>
+
+
+
+
+              <h3>わに丸</h3>
+
+
+
+
+              <p>少し強そうだけど頼れる存在</p>
+
+
+
+
+              <div class="rating">●●●●○</div>
+
+
+
+
+              <button class="partner-detail-button" type="button">詳細を見る</button>
+
+            </article>
+
+          </div>
+
+          <button class="carousel-arrow next" type="button" aria-label="次へ">›</button>
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- かんたん診断：v2.0（5問・相性度表示） -->
+    <section class="section diagnosis" id="diagnosis">
+      <div class="container">
+        <h2 class="section-title">
+          <img src="images/favicon.png" alt="" class="paw-icon">
+          かんたん診断で見つけよう！
+        </h2>
+
+        <div class="diagnosis-steps">
+          <div class="step-card">
+            <b>STEP1</b>
+            <p>5つの質問に答える</p>
+            <div class="step-photo">
+              <img src="images/dog-mini.jpeg" alt="質問を待つ小さな犬">
+            </div>
+          </div>
+
+          <span class="step-arrow">→</span>
+
+          <div class="step-card">
+            <b>STEP2</b>
+            <p>あなたの好みを分析</p>
+            <div class="step-photo">
+              <img src="images/robot-frog.jpeg" alt="ロボットとカエル">
+            </div>
+          </div>
+
+          <span class="step-arrow">→</span>
+
+          <div class="step-card">
+            <b>STEP3</b>
+            <p>相性のよい相手を表示</p>
+            <div class="step-photo">
+              <img src="images/partners-group01.jpeg" alt="おすすめの癒しパートナーたち">
+            </div>
+          </div>
+        </div>
+
+        <button class="button button-primary diagnosis-start" type="button">
+          <span>▶</span>診断をはじめる
+        </button>
+
+        <div class="diagnosis-panel" hidden>
+
+          <!-- 診断の進み具合 -->
+          <div class="diagnosis-progress" role="group" aria-labelledby="progress-title">
+            <div class="diagnosis-progress-head">
+              <span id="progress-title" class="diagnosis-progress-label">
+                QUESTION 1 / 5
+              </span>
+              <span class="diagnosis-progress-percent">
+                20%
+              </span>
+            </div>
+          </div>
+
+          <!-- 質問1 -->
+          <div class="question" data-step="1">
+            <h3>疲れた日は、どんなふうに過ごしたい？</h3>
+            <div class="answer-grid">
+              <button type="button" data-type="animal">一緒に遊んで元気になりたい</button>
+              <button type="button" data-type="plush">静かに休んで安心したい</button>
+              <button type="button" data-type="robot">話を聞いてもらいたい</button>
+            </div>
+          </div>
+
+          <!-- 質問2 -->
+          <div class="question" data-step="2" hidden>
+            <h3>好きな距離感は？</h3>
+            <div class="answer-grid">
+              <button type="button" data-type="animal">いつも近くにいてほしい</button>
+              <button type="button" data-type="plush">そっと見守ってほしい</button>
+              <button type="button" data-type="robot">必要な時に会話したい</button>
+            </div>
+          </div>
+
+          <!-- 質問3 -->
+          <div class="question" data-step="3" hidden>
+            <h3>一番ほしい癒しは？</h3>
+            <div class="answer-grid">
+              <button type="button" data-type="animal">明るさとぬくもり</button>
+              <button type="button" data-type="plush">安心感と落ち着き</button>
+              <button type="button" data-type="robot">励ましとコミュニケーション</button>
+            </div>
+          </div>
+
+          <!-- 質問4 -->
+          <div class="question" data-step="4" hidden>
+            <h3>休日はどう過ごしたい？</h3>
+            <div class="answer-grid">
+              <button type="button" data-type="animal">一緒に外へ出かけたい</button>
+              <button type="button" data-type="plush">家でのんびりしたい</button>
+              <button type="button" data-type="robot">新しいことを試したい</button>
+            </div>
+          </div>
+
+          <!-- 質問5 -->
+          <div class="question" data-step="5" hidden>
+            <h3>パートナーに一番求めることは？</h3>
+            <div class="answer-grid">
+              <button type="button" data-type="animal">笑顔と元気をくれること</button>
+              <button type="button" data-type="plush">黙って受け止めてくれること</button>
+              <button type="button" data-type="robot">言葉で支えてくれること</button>
+            </div>
+          </div>
+
+          <!-- 診断結果 -->
+          <div class="diagnosis-result" hidden>
+            <p class="result-lead">あなたにおすすめの癒しパートナーは…</p>
+
+            <div class="result-layout">
+              <div class="result-image">
+                <img src="images/partner-bear.jpeg" alt="診断結果の癒しパートナー">
+              </div>
+
+              <div class="result-detail">
+                <p class="result-type">安心ぬいぐるみタイプ</p>
+                <h3>くまのモコ</h3>
+
+                <div class="compatibility">
+                  <div class="compatibility-head">
+                    <span>あなたとの相性</span>
+                    <strong><span class="compatibility-score">92</span>%</strong>
+                  </div>
+                  <div class="compatibility-bar">
+                    <span></span>
+                  </div>
+                </div>
+
+                <p class="result-text">
+                  静かに寄り添ってくれる存在が、安心できる時間を作ってくれそうです。
                 </p>
 
-                <div class="button-group">
-                    <a class="button" href="https://atsu-hoiku.com/#ai">
-                        AI活用を見る
-                    </a>
-
-                    <a class="button button-secondary" href="https://atsu-hoiku.com/#profile">
-                        プロフィール
-                    </a>
-                </div>
+                <ul class="result-tags" aria-label="おすすめポイント">
+                  <li>安心感</li>
+                  <li>見守り</li>
+                  <li>リラックス</li>
+                </ul>
+              </div>
             </div>
-        </section>
 
-        <section id="profile">
-            <div class="container">
-                <div class="section-heading">
-                    <span>PROFILE</span>
-                    <h2>自己紹介</h2>
-                </div>
-
-                <div class="profile-box">
-                    <div class="profile-image">
-                        プロフィール画像予定
-                    </div>
-
-                    <div>
-                        <h3>きりん先生</h3>
-
-                        <p>
-                            元園長・保育士。保育・教育分野を中心に、
-                            16年以上にわたって保育現場で経験を重ねてきました。
-                        </p>
-
-                        <p>
-                            保育士、主任、園長、学童保育、発達支援、
-                            日本語教育などの経験があります。
-                        </p>
-
-                        <p>
-                            現在は、これまでの保育経験にAIとWeb制作を掛け合わせ、
-                            保育現場で役立つ情報や実践例を発信しています。
-                        </p>
-
-                        <a class="card-link" href="https://atsu-hoiku.com/profile/">
-                            詳しいプロフィールを見る →
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="ai">
-            <div class="container">
-                <div class="section-heading">
-                    <span>AI PRACTICE</span>
-                    <h2>AI活用</h2>
-
-                    <p>
-                        保育現場や日常業務で使えるAI活用を、
-                        実践例とともに紹介します。
-                    </p>
-                </div>
-
-                <div class="card-grid">
-                    <article class="card">
-                        <h3>保育士がChatGPTを使う3つの活用例</h3>
-
-                        <p>
-                            月案・週案・おたより・会議準備など、
-                            保育現場で実際に使えるChatGPTの活用例を紹介します。
-                        </p>
-
-                        <a class="card-link" href="https://atsu-hoiku.com/ai/chatgpt-hoiku.html">
-                            記事を読む →
-                        </a>
-                    </article>
-
-                    <article class="card">
-                        <h3>Gemini活用（準備中）</h3>
-
-                        <p>
-                            Google Geminiを保育で活用する方法を
-                            今後公開予定です。
-                        </p>
-
-                        <a class="card-link" href="https://atsu-hoiku.com/ai/">
-                            一覧を見る →
-                        </a>
-                    </article>
-
-                    <article class="card">
-                        <h3>NotebookLM活用（準備中）</h3>
-
-                        <p>
-                            保育資料の整理や研修、
-                            情報共有への活用方法を紹介予定です。
-                        </p>
-
-                        <a class="card-link" href="https://atsu-hoiku.com/ai/">
-                            一覧を見る →
-                        </a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="column">
-            <div class="container">
-                <div class="section-heading">
-                    <span>HOIKU & EDUCATION</span>
-                    <h2>保育・教育コラム</h2>
-
-                    <p>
-                        保育現場での経験や、子ども・保護者・職員との関わりから
-                        考えたことを発信します。
-                    </p>
-                </div>
-
-                <div class="card-grid">
-                    <article class="card">
-                        <h3>大人が笑えば、子どもも笑う</h3>
-
-                        <p>
-                            保育者の表情や関わり方が、
-                            子どもたちの安心感にどう影響するのかを考えます。
-                        </p>
-
-                        <a class="card-link" href="https://atsu-hoiku.com/hoiku/">
-                            続きを見る →
-                        </a>
-                    </article>
-
-                    <article class="card">
-                        <h3>優しさと厳しさのメリハリ</h3>
-
-                        <p>
-                            子どもを受け止めながら、
-                            必要なことを明確に伝える保育について紹介します。
-                        </p>
-
-                        <a class="card-link" href="https://atsu-hoiku.com/hoiku/">
-                            続きを見る →
-                        </a>
-                    </article>
-
-                    <article class="card">
-                        <h3>働きやすい保育園とは</h3>
-
-                        <p>
-                            公平な職場、持続可能な業務量、
-                            保護者との協働について考えます。
-                        </p>
-
-                        <a class="card-link" href="https://atsu-hoiku.com/hoiku/">
-                            続きを見る →
-                        </a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="web">
-            <div class="container">
-                <div class="section-heading">
-                    <span>WEB PORTFOLIO</span>
-                    <h2>Web制作</h2>
-
-                    <p>
-                        職業訓練校で制作したWebサイトを紹介しています。
-                        企画・デザイン・コーディングを通して学んだ成果をご覧いただけます。
-                    </p>
-                </div>
-
-                <div class="portfolio-grid">
-
-                    <article class="portfolio-card">
-                        <div class="portfolio-card__label">
-                            PERSONAL WORK
-                        </div>
-
-                        <div class="portfolio-card__body">
-                            <h3>個人制作</h3>
-
-                            <p>
-                                HTML・CSS・JavaScriptを使用して制作した、
-                                個人制作のWebサイトです。
-                            </p>
-
-                            <dl class="portfolio-info">
-                                <div>
-                                    <dt>制作形態</dt>
-                                    <dd>個人制作</dd>
-                                </div>
-
-                                <div>
-                                    <dt>使用技術</dt>
-                                    <dd>HTML / CSS / JavaScript</dd>
-                                </div>
-                            </dl>
-
-                            <a class="portfolio-button" href="https://atsu-hoiku.com/web/personal-site/" target="_blank"
-                                rel="noopener noreferrer">
-                                個人制作を見る
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-card">
-                        <div class="portfolio-card__label">
-                            MIDTERM PROJECT
-                        </div>
-
-                        <div class="portfolio-card__body">
-                            <h3>中間課題</h3>
-
-                            <p>
-                                職業訓練校の中間課題として制作したWebサイトです。
-                                学習した内容を組み合わせて形にしました。
-                            </p>
-
-                            <dl class="portfolio-info">
-                                <div>
-                                    <dt>制作形態</dt>
-                                    <dd>個人課題</dd>
-                                </div>
-
-                                <div>
-                                    <dt>使用技術</dt>
-                                    <dd>HTML / CSS / JavaScript</dd>
-                                </div>
-                            </dl>
-
-                            <a class="portfolio-button" href="https://atsu-hoiku.com/web/middle-site/" target="_blank"
-                                rel="noopener noreferrer">
-                                中間課題を見る
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-card">
-                        <div class="portfolio-card__label">
-                            GROUP PROJECT
-                        </div>
-
-                        <div class="portfolio-card__body">
-                            <h3>グループ制作</h3>
-
-                            <p>
-                                メンバーと役割分担をしながら、
-                                チームで制作したWebサイトです。
-                            </p>
-
-                            <dl class="portfolio-info">
-                                <div>
-                                    <dt>制作形態</dt>
-                                    <dd>グループ制作</dd>
-                                </div>
-
-                                <div>
-                                    <dt>使用技術</dt>
-                                    <dd>HTML / CSS / JavaScript</dd>
-                                </div>
-                            </dl>
-
-                            <a class="portfolio-button" href="https://atsu-hoiku.com/web/group-site/" target="_blank"
-                                rel="noopener noreferrer">
-                                グループ制作を見る
-                            </a>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="tools">
-            <div class="container">
-                <div class="section-heading">
-                    <span>AI TOOLS</span>
-                    <h2>おすすめAIツール</h2>
-
-                    <p>
-                        学習や文章作成、情報整理に活用している
-                        AIツールを紹介します。
-                    </p>
-                </div>
-
-                <div class="tool-list">
-                    <div class="tool-item">ChatGPT</div>
-                    <div class="tool-item">Gemini</div>
-                    <div class="tool-item">NotebookLM</div>
-                    <div class="tool-item">Claude</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <div class="contact-box">
-                    <h2>お問い合わせ</h2>
-
-                    <p>
-                        保育・教育・AI活用・Web制作についての
-                        ご相談やご連絡はこちらからお願いします。
-                    </p>
-
-                    <a class="button" href="https://atsu-hoiku.com/contact/">
-                        お問い合わせページへ
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <small>
-                © 2026 atsu-hoiku.com
-            </small>
+            <button class="button button-secondary diagnosis-reset" type="button">
+              もう一度診断する
+            </button>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
+
+
+
+    <!-- 利用者の声：PCは3件、SPは1件ずつ -->
+
+    <section class="section voices" id="voices">
+
+      <div class="container">
+
+        <h2 class="section-title">
+
+          <img src="images/favicon.png" alt="" class="paw-icon">
+
+          利用者の声
+
+        </h2>
+
+        <div class="voice-slider">
+
+          <div class="voice-card is-current">
+
+            <div class="user-icon">
+
+              <img src="images/voice-dog.jpeg" alt="犬の癒しパートナー">
+
+            </div>
+
+            <p>毎日の疲れが<br>癒されました！</p>
+
+          </div>
+
+
+
+          <div class="voice-card">
+
+            <div class="user-icon">
+
+              <img src="images/voice-frog.jpeg" alt="カエルの癒しパートナー">
+
+            </div>
+
+            <p>自分に合う相手が<br>見つかってうれしい！</p>
+
+          </div>
+
+
+
+          <div class="voice-card">
+
+            <div class="user-icon">
+
+              <img src="images/voice-hippo.jpeg" alt="カバの癒しパートナー">
+
+            </div>
+
+            <p>仕事終わりが<br>楽しみになりました♪</p>
+
+          </div>
+
+        </div>
+
+        <div class="slider-dots" role="group" aria-label="利用者の声の切り替え">
+
+          <button class="is-active" type="button" aria-label="1件目"></button>
+
+          <button type="button" aria-label="2件目"></button>
+
+          <button type="button" aria-label="3件目"></button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- よくある質問 -->
+
+    <section class="section faq" id="faq">
+
+      <div class="container narrow">
+
+        <h2 class="section-title">
+
+          <img src="images/favicon.png" alt="" class="paw-icon">
+
+          よくある質問
+
+        </h2>
+
+        <div class="accordion">
+
+          <div class="faq-item">
+
+            <button class="faq-question" type="button" aria-expanded="false">
+
+              <span><b>Q.</b> 利用料はかかりますか？</span><i>＋</i>
+
+            </button>
+
+            <div class="faq-answer">
+
+              <p>基本診断は無料です。追加サービスは内容に応じて料金が発生します。</p>
+
+            </div>
+
+          </div>
+
+          <div class="faq-item">
+
+            <button class="faq-question" type="button" aria-expanded="false">
+
+              <span><b>Q.</b> 動物は実際に飼うのですか？</span><i>＋</i>
+
+            </button>
+
+            <div class="faq-answer">
+
+              <p>紹介・体験・レンタルなど、パートナーの種類に応じた形で癒しを体験します。</p>
+
+            </div>
+
+          </div>
+
+          <div class="faq-item">
+
+            <button class="faq-question" type="button" aria-expanded="false">
+
+              <span><b>Q.</b> AIロボットとはどんなサービスですか？</span><i>＋</i>
+
+            </button>
+
+            <div class="faq-answer">
+
+              <p>会話や見守りを通して、利用者の生活に寄り添うサービスです。</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <button class="text-link faq-more" type="button" aria-expanded="false">すべて開く</button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- 診断への誘導エリア -->
+
+    <section class="partners-cta">
+
+      <div class="container">
+
+        <div class="partners-cta-inner">
+
+          <div class="partners-cta-photo">
+
+            <img src="images/cta-partners-group.jpeg" alt="個性豊かな癒しパートナーたち">
+
+          </div>
+
+
+
+          <div class="partners-cta-text">
+
+            <img src="images/favicon.png" alt="" class="paw-icon">
+
+            <h2>あなたを待っている<br>パートナーがいます</h2>
+
+            <p>
+
+              まずは簡単な診断から、今のあなたに合う癒しを探してみませんか？
+
+            </p>
+
+            <a class="button button-primary" href="#diagnosis">
+
+              <span>▶</span>もう一度診断してみる
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- お問い合わせフォーム -->
+
+    <section class="section contact" id="contact">
+
+      <div class="container narrow">
+
+        <h2 class="section-title">
+
+          <img src="images/favicon.png" alt="" class="paw-icon">
+
+          お問い合わせ
+
+        </h2>
+
+        <form class="contact-form" novalidate>
+
+          <div class="form-row">
+
+            <label>
+
+              <span>お名前</span>
+
+              <input type="text" name="name" placeholder="山田 花子" required>
+
+              <small class="field-error name-error"></small>
+
+            </label>
+
+
+
+            <label>
+
+              <span>メールアドレス</span>
+
+              <input type="email" name="email" placeholder="example@mail.com" required>
+
+              <small class="field-error email-error"></small>
+
+            </label>
+
+          </div>
+
+
+
+          <label>
+
+            <span>お問い合わせ内容</span>
+
+            <textarea name="message" rows="5" placeholder="お問い合わせ内容をご入力ください" required></textarea>
+
+            <small class="field-error message-error"></small>
+
+          </label>
+
+
+
+          <p class="form-message" aria-live="polite"></p>
+
+
+
+          <button class="button button-primary" type="submit">
+
+            <span>▶</span>送信する
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- パートナー詳細モーダル -->
+
+  <div class="partner-modal" aria-hidden="true">
+
+    <div class="partner-modal-overlay"></div>
+
+
+
+    <div class="partner-modal-content" role="dialog" aria-modal="true" aria-labelledby="partner-modal-title">
+
+
+
+      <button class="partner-modal-close" type="button" aria-label="詳細画面を閉じる">×</button>
+
+
+
+      <img class="partner-modal-image" src="images/partner-bear.jpeg" alt="選択した癒しパートナー">
+
+
+
+      <div class="partner-modal-info">
+
+        <p class="partner-modal-type"></p>
+
+        <h3 id="partner-modal-title">パートナー詳細</h3>
+
+        <p class="partner-modal-description"></p>
+
+
+
+        <div class="partner-modal-best">
+
+          <strong>こんな方におすすめ</strong>
+
+          <p></p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- フッター -->
+
+  <footer class="site-footer">
+
+    <div class="footer-main">
+
+      <img class="footer-paw footer-paw-left" src="images/favicon.png" alt="">
+
+
+
+      <img class="footer-paw footer-paw-right" src="images/favicon.png" alt="">
+
+      <div class="footer-inner">
+
+
+
+        <a class="footer-logo" href="#home" aria-label="Healing Match トップへ">
+
+          <img src="images/logo.png" alt="Healing Match">
+
+        </a>
+
+
+
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+
+          <a href="#features">サービス紹介</a>
+
+          <a href="#partners">パートナー紹介</a>
+
+          <a href="#diagnosis">診断</a>
+
+          <a href="#voices">利用者の声</a>
+
+          <a href="#faq">FAQ</a>
+
+          <a href="#contact">お問い合わせ</a>
+
+        </nav>
+
+        <p class="footer-sns-title">Healing Matchをフォロー</p>
+
+        <div class="social-links">
+
+          <a href="#" aria-label="Xを開く">
+
+            <img src="images/X-logo-white.png" alt="">
+
+          </a>
+
+
+
+          <a href="#" aria-label="Instagramを開く">
+
+            <img src="images/Instagram_Glyph_White.png" alt="">
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="footer-copyright">
+
+      <small>© 2026 Healing Match Inc.</small>
+
+    </div>
+
+  </footer>
+
+
+
+  <button class="page-top" type="button" aria-label="ページ上部へ戻る">
+
+    <span class="page-top-arrow">▲</span>
+
+    <span class="page-top-text">TOP</span>
+
+    <img src="images/favicon.png" alt="">
+
+  </button>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <script src="js/script.js"></script>
+
 </body>
+
+
 
 </html>
