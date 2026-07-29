@@ -1133,8 +1133,6 @@ body.modal-open {
   background: var(--pink-pale);
 }
 
-
-
 /* ==================================================
    PC表示：おすすめパートナーは最初5体
 ================================================== */
@@ -1757,3 +1755,39 @@ body.modal-open {
   }
 }
 
+.demo-notice {
+  padding: 14px 20px;
+  background-color: #fff3cd;
+  color: #604800;
+  border-bottom: 1px solid #f0d98a;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.demo-notice strong {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.demo-notice p {
+  display: inline;
+  margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .demo-notice {
+    padding: 14px 18px;
+    text-align: left;
+  }
+
+  .demo-notice strong,
+  .demo-notice p {
+    display: block;
+  }
+
+  .demo-notice strong {
+    margin: 0 0 4px;
+  }
+}
