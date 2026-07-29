@@ -144,8 +144,8 @@
         .hero h1 {
             margin: 0 0 12px;
             color: #5a3a1e;
-            font-size: clamp(2.7rem, 7vw, 5.4rem);
-            line-height: 1.05;
+            font-size: clamp(2.4rem, 5vw, 4.6rem);
+            line-height: 1.1;
         }
 
         .hero h1 span {
@@ -538,7 +538,122 @@
             text-align: center
         }
 
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.3;
+        }
+
+        .brand-text small {
+            color: var(--green);
+            font-size: .78rem;
+            font-weight: 800;
+        }
+
+        .hero-title-sub {
+            display: block;
+            color: var(--orange);
+            white-space: nowrap;
+        }
+
+        .menu-button {
+            display: none;
+            width: 46px;
+            height: 46px;
+            padding: 10px;
+            border: 0;
+            border-radius: 10px;
+            background-color: var(--yellow);
+            cursor: pointer;
+        }
+
+        .menu-button span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            margin: 5px 0;
+            border-radius: 999px;
+            background-color: var(--brown);
+        }
+
+        .social-link img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .page-top {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background-color: var(--orange);
+            color: var(--white);
+            font-weight: 900;
+            line-height: 1.1;
+            text-decoration: none;
+            box-shadow: 0 8px 22px rgba(90, 58, 30, .24);
+            transition: .2s;
+        }
+
+        .page-top:hover {
+            transform: translateY(-3px);
+            background-color: var(--green);
+        }
+
+        .page-top span {
+            font-size: .7rem;
+        }
+
         @media(max-width:900px) {
+
+            .header-inner {
+                position: relative;
+                flex-direction: row;
+                align-items: center;
+                padding: 12px 0;
+            }
+
+            .menu-button {
+                display: block;
+                margin-left: auto;
+            }
+
+            .global-nav {
+                display: none;
+                position: absolute;
+                top: calc(100% + 1px);
+                right: 0;
+                left: 0;
+                padding: 16px 4%;
+                background-color: var(--cream);
+                border-bottom: 1px solid var(--line);
+                box-shadow: 0 12px 24px rgba(90, 58, 30, .12);
+            }
+
+            .global-nav.is-open {
+                display: block;
+            }
+
+            .global-nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .global-nav a {
+                display: block;
+                padding: 12px 8px;
+                border-bottom: 1px solid var(--line);
+            }
+
             .header-inner {
                 align-items: flex-start;
                 flex-direction: column;
@@ -573,6 +688,17 @@
         }
 
         @media(max-width:640px) {
+            .hero-title-sub {
+                white-space: normal;
+            }
+
+            .page-top {
+                right: 14px;
+                bottom: 14px;
+                width: 54px;
+                height: 54px;
+            }
+
             .hero {
                 padding: 58px 0
             }
@@ -612,10 +738,16 @@
                     <small>保育×AI×教育ラボ</small>
                 </div>
             </a>
+            <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav class="global-nav" aria-label="メインナビゲーション">
                 <ul>
+                    <li><a href="#contents">発信内容</a></li>
                     <li><a href="#profile">自己紹介</a></li>
-                    <li><a href="#contents">実践コンテンツ</a></li>
+                    <li><a href="#food">簡単料理</a></li>
                     <li><a href="#portfolio">Web制作</a></li>
                     <li><a href="#contact">お問い合わせ</a></li>
                 </ul>
@@ -632,12 +764,12 @@
                     </div>
 
                     <h1>
-                        きりん先生<br>
-                        <span>保育×AI×教育ラボ</span>
+                        きりん先生
+                        <span class="hero-title-sub">保育×AI×教育ラボ</span>
                     </h1>
 
                     <p class="hero-copy">
-                        保育をもっと楽しく、もっとラクに。
+                        保育をもっと楽しく、もっと豊かに。
                     </p>
 
                     <p class="hero-lead">
@@ -690,6 +822,50 @@
 
             </div>
         </section>
+
+
+
+
+        <section id="contents" class="content-section">
+            <div class="container">
+                <div class="section-heading"><span>PRACTICE CONTENTS</span>
+                    <h2>これまでの実践を紹介</h2>
+                    <p>今ある経験や資料を、まずは見える形にしていきます。</p>
+                </div>
+                <div class="card-grid">
+                    <article class="content-card">
+                        <div class="icon">👶</div>
+                        <h3>保育実践・行事</h3>
+                        <p>担任・主任・園長として経験した保育、行事、職員育成などを紹介します。</p><a href="hoiku/">準備中・今後追加予定 →</a>
+                    </article>
+                    <article class="content-card">
+                        <div class="icon">🤖</div>
+                        <h3>AI × 保育</h3>
+                        <p>ChatGPTなどを、保育計画・文章作成・会議準備に活用する方法です。</p><a href="ai/">AI活用記事を見る →</a>
+                    </article>
+                    <article class="content-card">
+                        <div class="icon">🧩</div>
+                        <h3>幼児プログラミング</h3>
+                        <p>VISCUITやScratchJr.を使った講義・実践資料を整理して公開します。</p><a href="#">準備中 →</a>
+                    </article>
+                    <article class="content-card">
+                        <div class="icon">🗺️</div>
+                        <h3>講義・マインドマップ</h3>
+                        <p>実際に行った講義や、考えを整理するために使った資料を紹介します。</p><a href="#">準備中 →</a>
+                    </article>
+                    <article class="content-card">
+                        <div class="icon">🌏</div>
+                        <h3>日本語教育・海外</h3>
+                        <p>日本語教師の経験、韓国留学、ネパール出張などを実践記録として残します。</p><a href="#">準備中 →</a>
+                    </article>
+                    <article class="content-card">
+                        <div class="icon">🍳</div>
+                        <h3>きりん先生の簡単料理</h3>
+                        <p>忙しい日でも作りやすい、簡単・節約・家庭向けの料理を写真付きで紹介します。</p><a href="#">準備中 →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
         <section id="profile" class="profile-section">
             <div class="container">
                 <div class="section-heading"><span>PROFILE</span>
@@ -709,9 +885,15 @@
                         <p>このサイトでは、これから始めることだけでなく、すでに実践してきた講義、行事、幼児プログラミング、海外・日本語教育、Web制作などを少しずつ整理して公開します。</p>
                         <div class="social-row">
                             <a class="social-link" href="https://x.com/atsui556" target="_blank"
-                                rel="noopener noreferrer">𝕏 @atsui556</a>
+                                rel="noopener noreferrer">
+                                <img src="images/x-logo.png" alt="" aria-hidden="true">
+                                <span>@atsui556</span>
+                            </a>
                             <a class="social-link" href="https://www.instagram.com/kirin_sensei_hoiku/" target="_blank"
-                                rel="noopener noreferrer">Instagram @kirin_sensei_hoiku</a>
+                                rel="noopener noreferrer">
+                                <img src="images/instagram-logo.png" alt="" aria-hidden="true">
+                                <span>@kirin_sensei_hoiku</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -755,47 +937,6 @@
                 </div>
             </div>
         </section>
-        <section id="contents" class="content-section">
-            <div class="container">
-                <div class="section-heading"><span>PRACTICE CONTENTS</span>
-                    <h2>これまでの実践を紹介</h2>
-                    <p>今ある経験や資料を、まずは見える形にしていきます。</p>
-                </div>
-                <div class="card-grid">
-                    <article class="content-card">
-                        <div class="icon">👶</div>
-                        <h3>保育実践・行事</h3>
-                        <p>担任・主任・園長として経験した保育、行事、職員育成などを紹介します。</p><a href="hoiku/">準備中・今後追加予定 →</a>
-                    </article>
-                    <article class="content-card">
-                        <div class="icon">🤖</div>
-                        <h3>AI × 保育</h3>
-                        <p>ChatGPTなどを、保育計画・文章作成・会議準備に活用する方法です。</p><a href="ai/">AI活用記事を見る →</a>
-                    </article>
-                    <article class="content-card">
-                        <div class="icon">🧩</div>
-                        <h3>幼児プログラミング</h3>
-                        <p>VISCUITやScratchJr.を使った講義・実践資料を整理して公開します。</p><a href="#">準備中 →</a>
-                    </article>
-                    <article class="content-card">
-                        <div class="icon">🗺️</div>
-                        <h3>講義・マインドマップ</h3>
-                        <p>実際に行った講義や、考えを整理するために使った資料を紹介します。</p><a href="#">準備中 →</a>
-                    </article>
-                    <article class="content-card">
-                        <div class="icon">🌏</div>
-                        <h3>日本語教育・海外</h3>
-                        <p>日本語教師の経験、韓国留学、ネパール出張などを実践記録として残します。</p><a href="#">準備中 →</a>
-                    </article>
-                    <article class="content-card">
-                        <div class="icon">🍳</div>
-                        <h3>きりん先生の簡単料理</h3>
-                        <p>忙しい日でも作りやすい、簡単・節約・家庭向けの料理を写真付きで紹介します。</p><a href="#">準備中 →</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
         <section id="food" class="food-section">
             <div class="container">
 
@@ -812,47 +953,47 @@
                 <div class="food-grid">
 
                     <article class="food-card">
-                        <img src="images/food-01.jpg" alt="豚肉とキャベツのワンパンうどん">
+                        <img src="images/food-01.jpeg" alt="豚肉とキャベツのワンパンうどん">
                         <p>豚肉・キャベツのワンパンうどん</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-02.jpg" alt="れんこんを使った料理">
+                        <img src="images/food-02.jpeg" alt="れんこんを使った料理">
                         <p>れんこんの簡単おかず</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-03.jpg" alt="卵と野菜の全粒粉ホットサンド">
+                        <img src="images/food-03.jpeg" alt="卵と野菜の全粒粉ホットサンド">
                         <p>卵と野菜の全粒粉ホットサンド</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-04.jpg" alt="野菜たっぷりホットサンド">
+                        <img src="images/food-04.jpeg" alt="野菜たっぷりホットサンド">
                         <p>野菜たっぷりホットサンド</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-05.jpg" alt="ブルーベリーの豆腐パンケーキ">
+                        <img src="images/food-05.jpeg" alt="ブルーベリーの豆腐パンケーキ">
                         <p>ブルーベリーの豆腐パンケーキ</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-06.jpg" alt="オクラ納豆のさっぱり麺">
+                        <img src="images/food-06.jpeg" alt="オクラ納豆のさっぱり麺">
                         <p>オクラ納豆のさっぱり麺</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-07.jpg" alt="鶏むね肉の簡単焼き">
+                        <img src="images/food-07.jpeg" alt="鶏むね肉の簡単焼き">
                         <p>鶏むね肉の簡単焼き</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-08.jpg" alt="バナナとブルーベリーの朝食トースト">
+                        <img src="images/food-08.jpeg" alt="バナナとブルーベリーの朝食トースト">
                         <p>バナナとブルーベリーの朝食トースト</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-09.jpg" alt="野菜たっぷり焼きそば">
+                        <img src="images/food-09.jpeg" alt="野菜たっぷり焼きそば">
                         <p>野菜たっぷり焼きそば</p>
                     </article>
 
@@ -935,14 +1076,46 @@
                 <div class="contact-box">
                     <h2>一緒に、保育の可能性を考えませんか？</h2>
                     <p>保育・教育・AI活用・幼児プログラミング・Web制作についてのご相談や感想をお待ちしています。</p><a class="button"
-                        href="contact/">お問い合わせページへ</a>
+                        href="mailto:atsui556@gmail.com?subject=きりん先生サイトからのお問い合わせ">メールで問い合わせる</a>
                 </div>
             </div>
         </section>
     </main>
+
+    <a class="page-top" href="#top" aria-label="ページの先頭へ戻る">
+        ↑
+        <span>TOP</span>
+    </a>
+
     <footer>
-        <div class="container"><small>© 2026 きりん先生の実践アーカイブ</small></div>
+        <div class="container"><small>© 2026 きりん先生｜保育×AI×教育ラボ</small></div>
     </footer>
+
+    <script>
+        const menuButton = document.querySelector(".menu-button");
+        const globalNav = document.querySelector(".global-nav");
+        const menuLinks = document.querySelectorAll(".global-nav a");
+
+        if (menuButton && globalNav) {
+            menuButton.addEventListener("click", function () {
+                const isOpen = globalNav.classList.toggle("is-open");
+                menuButton.setAttribute("aria-expanded", String(isOpen));
+                menuButton.setAttribute(
+                    "aria-label",
+                    isOpen ? "メニューを閉じる" : "メニューを開く"
+                );
+            });
+
+            menuLinks.forEach(function (link) {
+                link.addEventListener("click", function () {
+                    globalNav.classList.remove("is-open");
+                    menuButton.setAttribute("aria-expanded", "false");
+                    menuButton.setAttribute("aria-label", "メニューを開く");
+                });
+            });
+        }
+    </script>
+
 </body>
 
 </html>
