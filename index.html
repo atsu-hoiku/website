@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>きりん先生の実践アーカイブ｜保育・AI・教育・Web</title>
+    <title>きりん先生｜保育×AI×教育ラボ</title>
     <link rel="icon" href="favicon.ico">
     <meta name="description" content="元園長・保育士のきりん先生が、保育・AI・幼児プログラミング・Web制作・日本語教育・簡単料理など、これまでの実践を紹介するサイトです。">
     <style>
@@ -109,53 +109,91 @@
         }
 
         .hero {
-            position: relative;
-            overflow: hidden;
-            padding: 82px 0;
-            background: radial-gradient(circle at 10% 15%, rgba(247, 201, 72, .42), transparent 26%), radial-gradient(circle at 90% 10%, rgba(116, 168, 74, .24), transparent 24%), linear-gradient(135deg, #fff6ce, #f8f3e7 56%, #eef6e8)
+            padding: 82px 0 72px;
+            background:
+                radial-gradient(circle at 10% 15%,
+                    rgba(247, 201, 72, 0.42),
+                    transparent 26%),
+                radial-gradient(circle at 90% 10%,
+                    rgba(116, 168, 74, 0.24),
+                    transparent 24%),
+                linear-gradient(135deg,
+                    #fff6ce,
+                    #f8f3e7 56%,
+                    #eef6e8);
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.15fr .85fr;
+            grid-template-columns: 1.15fr 0.85fr;
             gap: 54px;
-            align-items: center
+            align-items: center;
         }
 
         .eyebrow {
             display: inline-flex;
-            align-items: center;
-            gap: 8px;
             margin-bottom: 18px;
             padding: 8px 14px;
             border-radius: 999px;
-            background: var(--white);
-            color: var(--green);
+            background-color: #ffffff;
+            color: #74a84a;
             font-weight: 900;
-            box-shadow: var(--shadow)
+            box-shadow: 0 14px 34px rgba(90, 58, 30, 0.12);
         }
 
         .hero h1 {
-            margin: 0 0 20px;
-            color: var(--brown);
-            font-size: clamp(2.6rem, 7vw, 5.2rem);
-            line-height: 1.08
+            margin: 0 0 12px;
+            color: #5a3a1e;
+            font-size: clamp(2.7rem, 7vw, 5.4rem);
+            line-height: 1.05;
         }
 
         .hero h1 span {
-            color: var(--orange)
+            color: #f28c28;
+        }
+
+        .hero-copy {
+            margin: 0 0 14px;
+            color: #74a84a;
+            font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+            font-weight: 900;
         }
 
         .hero-lead {
             max-width: 680px;
-            margin: 0 0 28px;
-            font-size: 1.08rem
+            margin: 0 0 26px;
+            font-size: 1.06rem;
         }
 
-        .hero-actions {
+        .hero-actions,
+        .topic-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px
+            gap: 12px;
+        }
+
+        .topic-links {
+            margin-top: 18px;
+        }
+
+        .topic-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 16px;
+            border: 1px solid #e9dcc6;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #5a3a1e;
+            font-weight: 900;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .topic-link:hover {
+            border-color: #f28c28;
+            transform: translateY(-2px);
         }
 
         .button {
@@ -333,6 +371,72 @@
             text-decoration: none
         }
 
+        .stats-section {
+            background-color: #eef6e8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .stat {
+            padding: 24px;
+            border-radius: 20px;
+            background-color: #ffffff;
+            text-align: center;
+            box-shadow: 0 14px 34px rgba(90, 58, 30, 0.12);
+        }
+
+        .stat strong {
+            display: block;
+            color: #f28c28;
+            font-size: 2rem;
+        }
+
+        .stat span {
+            font-weight: 800;
+        }
+
+        .food-section {
+            background:
+                linear-gradient(180deg,
+                    #fffaf0,
+                    #fff4c7);
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .food-card {
+            overflow: hidden;
+            border-radius: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 14px 34px rgba(90, 58, 30, 0.12);
+        }
+
+        .food-card img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+
+        .food-card p {
+            margin: 0;
+            padding: 14px 16px;
+            color: #5a3a1e;
+            font-weight: 900;
+        }
+
+        .food-note {
+            margin-top: 24px;
+            text-align: center;
+        }
+
         .portfolio-section {
             background: var(--softgreen)
         }
@@ -441,6 +545,10 @@
                 padding: 14px 0
             }
 
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
             .hero-grid,
             .profile-grid {
                 grid-template-columns: 1fr
@@ -448,6 +556,14 @@
 
             .profile-photo-wrap {
                 max-width: 360px
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .card-grid,
@@ -475,6 +591,14 @@
             .contact-box {
                 padding: 26px 20px
             }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -482,8 +606,12 @@
 <body>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="#top"><img class="brand-logo" src="images/kirin-logo.jpeg"
-                    alt="きりん先生の親子イラスト"><span>きりん先生の実践アーカイブ</span></a>
+            <a class="brand" href="#top"><img class="brand-logo" src="images/kirin-logo.jpeg" alt="きりん先生の親子イラスト">
+                <div class="brand-text">
+                    <strong>きりん先生</strong>
+                    <small>保育×AI×教育ラボ</small>
+                </div>
+            </a>
             <nav class="global-nav" aria-label="メインナビゲーション">
                 <ul>
                     <li><a href="#profile">自己紹介</a></li>
@@ -497,18 +625,69 @@
     <main id="top">
         <section class="hero">
             <div class="container hero-grid">
-                <div>
-                    <div class="eyebrow">🦒 保育を中心に、実践してきたことを残す場所</div>
-                    <h1>きりん先生の<br><span>実践アーカイブ</span></h1>
+
+                <div class="hero-content">
+                    <div class="eyebrow">
+                        🦒 実際にやってみたことを、分かりやすく
+                    </div>
+
+                    <h1>
+                        きりん先生<br>
+                        <span>保育×AI×教育ラボ</span>
+                    </h1>
+
+                    <p class="hero-copy">
+                        保育をもっと楽しく、もっとラクに。
+                    </p>
+
                     <p class="hero-lead">
-                        元園長・保育士として16年以上。保育、AI、幼児プログラミング、Web制作、日本語教育、簡単料理など、これまで実際に取り組んだことを楽しく、分かりやすく紹介します。</p>
-                    <div class="hero-actions"><a class="button" href="#contents">実践を見る</a><a class="button secondary"
-                            href="#portfolio">Web制作を見る</a></div>
+                        元園長・保育士として16年以上。
+                        保育実践、AI活用、幼児プログラミング、
+                        Web制作、日本語教育、簡単料理など、
+                        これまで実際に取り組んだことを紹介します。
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button" href="#contents">
+                            発信内容を見る
+                        </a>
+
+                        <a class="button secondary" href="#profile">
+                            きりん先生を知る
+                        </a>
+                    </div>
+
+                    <div class="topic-links">
+                        <a class="topic-link" href="ai/">
+                            🤖 AI活用
+                        </a>
+
+                        <a class="topic-link" href="hoiku/">
+                            👶 保育実践
+                        </a>
+
+                        <a class="topic-link" href="#portfolio">
+                            💻 Web制作
+                        </a>
+
+                        <a class="topic-link" href="#food">
+                            🍳 簡単料理
+                        </a>
+
+                        <a class="topic-link" href="#contents">
+                            🌏 日本語教育
+                        </a>
+                    </div>
                 </div>
-                <div class="profile-photo-wrap"><img class="profile-photo" src="images/profile-giraffe.jpg"
-                        alt="きりんの衣装を着た、きりん先生">
-                    <div class="photo-badge">きりん先生です！</div>
+
+                <div class="profile-photo-wrap">
+                    <img class="profile-photo" src="images/profile-giraffe.jpg" alt="きりんの衣装を着たきりん先生">
+
+                    <div class="photo-badge">
+                        きりん先生です！
+                    </div>
                 </div>
+
             </div>
         </section>
         <section id="profile" class="profile-section">
@@ -535,6 +714,44 @@
                                 rel="noopener noreferrer">Instagram @kirin_sensei_hoiku</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section class="stats-section">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span>EXPERIENCE</span>
+                    <h2>これまでの経験</h2>
+
+                    <p>
+                        保育を中心に、教育・運営・多文化・ICTなど、
+                        幅広い分野を経験してきました。
+                    </p>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat">
+                        <strong>16年以上</strong>
+                        <span>保育・教育経験</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>園長経験</strong>
+                        <span>園運営・職員育成</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>420時間</strong>
+                        <span>日本語教師養成講座</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>2分野</strong>
+                        <span>VISCUIT・ScratchJr.</span>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -578,6 +795,77 @@
                 </div>
             </div>
         </section>
+
+        <section id="food" class="food-section">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span>EASY COOKING</span>
+                    <h2>保育士の簡単ごはん</h2>
+
+                    <p>
+                        忙しい日にも作りやすい料理を、
+                        まずは写真から紹介します。
+                    </p>
+                </div>
+
+                <div class="food-grid">
+
+                    <article class="food-card">
+                        <img src="images/food-01.jpg" alt="豚肉とキャベツのワンパンうどん">
+                        <p>豚肉・キャベツのワンパンうどん</p>
+                    </article>
+
+                    <article class="food-card">
+                        <img src="images/food-02.jpg" alt="れんこんを使った料理">
+                        <p>れんこんの簡単おかず</p>
+                    </article>
+
+                    <article class="food-card">
+                        <img src="images/food-03.jpg" alt="卵と野菜の全粒粉ホットサンド">
+                        <p>卵と野菜の全粒粉ホットサンド</p>
+                    </article>
+
+                    <article class="food-card">
+                        <img src="images/food-04.jpg" alt="野菜たっぷりホットサンド">
+                        <p>野菜たっぷりホットサンド</p>
+                    </article>
+
+                    <article class="food-card">
+                        <img src="images/food-05.jpg" alt="ブルーベリーの豆腐パンケーキ">
+                        <p>ブルーベリーの豆腐パンケーキ</p>
+                    </article>
+
+                    <article class="food-card">
+                        <img src="images/food-06.jpg" alt="オクラ納豆のさっぱり麺">
+                        <p>オクラ納豆のさっぱり麺</p>
+                    </article>
+
+                    <article class="food-card">
+                        <img src="images/food-07.jpg" alt="鶏むね肉の簡単焼き">
+                        <p>鶏むね肉の簡単焼き</p>
+                    </article>
+
+                    <article class="food-card">
+                        <img src="images/food-08.jpg" alt="バナナとブルーベリーの朝食トースト">
+                        <p>バナナとブルーベリーの朝食トースト</p>
+                    </article>
+
+                    <article class="food-card">
+                        <img src="images/food-09.jpg" alt="野菜たっぷり焼きそば">
+                        <p>野菜たっぷり焼きそば</p>
+                    </article>
+
+                </div>
+
+                <p class="food-note">
+                    ※料理名、材料、作り方は、今後1品ずつ詳しいページへ
+                    発展させていく予定です。
+                </p>
+
+            </div>
+        </section>
+
         <section id="portfolio" class="portfolio-section">
             <div class="container">
                 <div class="section-heading"><span>WEB PORTFOLIO</span>
