@@ -7,729 +7,13 @@
     <title>きりん先生｜保育×AI×教育ラボ</title>
     <link rel="icon" href="favicon.ico">
     <meta name="description" content="元園長・保育士のきりん先生が、保育・AI・幼児プログラミング・Web制作・日本語教育・簡単料理など、これまでの実践を紹介するサイトです。">
-    <style>
-        :root {
-            --yellow: #f7c948;
-            --orange: #f28c28;
-            --green: #74a84a;
-            --brown: #5a3a1e;
-            --cream: #fffaf0;
-            --ink: #2f2a24;
-            --white: #fff;
-            --softgreen: #eef6e8;
-            --softyellow: #fff4c7;
-            --line: #e9dcc6;
-            --shadow: 0 14px 34px rgba(90, 58, 30, .12)
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        body {
-            margin: 0;
-            color: var(--ink);
-            background: var(--cream);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
-            line-height: 1.8
-        }
-
-        a {
-            color: inherit
-        }
-
-        img {
-            max-width: 100%;
-            display: block
-        }
-
-        .container {
-            width: min(1120px, 92%);
-            margin-inline: auto
-        }
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 250, 240, .96);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--line)
-        }
-
-        .header-inner {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 900;
-            text-decoration: none;
-            color: var(--brown)
-        }
-
-        .brand-logo {
-            width: 48px;
-            height: 48px;
-            object-fit: cover;
-            border: 3px solid #f7c948;
-            border-radius: 50%;
-            background-color: #ffffff;
-            box-shadow: 0 4px 12px rgba(90, 58, 30, 0.15);
-        }
-
-        .global-nav ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px 20px;
-            margin: 0;
-            padding: 0;
-            list-style: none
-        }
-
-        .global-nav a {
-            text-decoration: none;
-            font-size: .93rem;
-            font-weight: 800;
-            color: var(--brown)
-        }
-
-        .global-nav a:hover {
-            color: var(--orange)
-        }
-
-        .hero {
-            padding: 82px 0 72px;
-            background:
-                radial-gradient(circle at 10% 15%,
-                    rgba(247, 201, 72, 0.42),
-                    transparent 26%),
-                radial-gradient(circle at 90% 10%,
-                    rgba(116, 168, 74, 0.24),
-                    transparent 24%),
-                linear-gradient(135deg,
-                    #fff6ce,
-                    #f8f3e7 56%,
-                    #eef6e8);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 54px;
-            align-items: center;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            margin-bottom: 18px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background-color: #ffffff;
-            color: #74a84a;
-            font-weight: 900;
-            box-shadow: 0 14px 34px rgba(90, 58, 30, 0.12);
-        }
-
-        .hero h1 {
-            margin: 0 0 12px;
-            color: #5a3a1e;
-            font-size: clamp(2.4rem, 5vw, 4.6rem);
-            line-height: 1.1;
-        }
-
-        .hero h1 span {
-            color: #f28c28;
-        }
-
-        .hero-copy {
-            margin: 0 0 14px;
-            color: #74a84a;
-            font-size: clamp(1.25rem, 2.5vw, 1.8rem);
-            font-weight: 900;
-        }
-
-        .hero-lead {
-            max-width: 680px;
-            margin: 0 0 26px;
-            font-size: 1.06rem;
-        }
-
-        .hero-actions,
-        .topic-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .topic-links {
-            margin-top: 18px;
-        }
-
-        .topic-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 44px;
-            padding: 10px 16px;
-            border: 1px solid #e9dcc6;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.85);
-            color: #5a3a1e;
-            font-weight: 900;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .topic-link:hover {
-            border-color: #f28c28;
-            transform: translateY(-2px);
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            padding: 12px 22px;
-            border-radius: 12px;
-            background: var(--orange);
-            color: var(--white);
-            font-weight: 900;
-            text-decoration: none;
-            box-shadow: var(--shadow)
-        }
-
-        .button.secondary {
-            background: var(--green)
-        }
-
-        .profile-photo-wrap {
-            position: relative;
-            max-width: 420px;
-            margin-inline: auto
-        }
-
-        .profile-photo {
-            width: 100%;
-            aspect-ratio: 4/5;
-            object-fit: cover;
-            object-position: center 18%;
-            border: 10px solid var(--white);
-            border-radius: 36px;
-            box-shadow: var(--shadow)
-        }
-
-        .photo-badge {
-            position: absolute;
-            right: -14px;
-            bottom: 24px;
-            padding: 10px 16px;
-            border-radius: 999px;
-            background: var(--yellow);
-            color: var(--brown);
-            font-weight: 900;
-            transform: rotate(-4deg);
-            box-shadow: var(--shadow)
-        }
-
-        section {
-            padding: 84px 0
-        }
-
-        .section-heading {
-            margin-bottom: 36px;
-            text-align: center
-        }
-
-        .section-heading span {
-            display: block;
-            color: var(--orange);
-            font-size: .82rem;
-            font-weight: 900;
-            letter-spacing: .14em
-        }
-
-        .section-heading h2 {
-            margin: 4px 0 10px;
-            color: var(--brown);
-            font-size: clamp(2rem, 4vw, 3rem)
-        }
-
-        .section-heading p {
-            max-width: 760px;
-            margin: 0 auto
-        }
-
-        .profile-section {
-            background: var(--white)
-        }
-
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 42px;
-            align-items: center
-        }
-
-        .profile-text {
-            padding: 34px;
-            border-radius: 24px;
-            background: var(--softyellow);
-            box-shadow: var(--shadow)
-        }
-
-        .profile-text h3 {
-            margin-top: 0;
-            color: var(--brown);
-            font-size: 1.8rem
-        }
-
-        .social-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 24px
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
-            border-radius: 999px;
-            background: var(--white);
-            font-weight: 900;
-            text-decoration: none;
-            border: 1px solid var(--line)
-        }
-
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px
-        }
-
-        .photo-gallery img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 18px;
-            box-shadow: var(--shadow)
-        }
-
-        .content-section {
-            background: linear-gradient(180deg, #fffaf0, #f8f3e7)
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px
-        }
-
-        .content-card {
-            display: flex;
-            flex-direction: column;
-            min-height: 280px;
-            padding: 26px;
-            border: 1px solid var(--line);
-            border-radius: 22px;
-            background: var(--white);
-            box-shadow: var(--shadow)
-        }
-
-        .content-card .icon {
-            font-size: 2rem;
-            line-height: 1
-        }
-
-        .content-card h3 {
-            margin: 14px 0 10px;
-            color: var(--brown);
-            font-size: 1.3rem
-        }
-
-        .content-card p {
-            margin: 0 0 20px
-        }
-
-        .content-card a {
-            margin-top: auto;
-            color: var(--green);
-            font-weight: 900;
-            text-decoration: none
-        }
-
-        .stats-section {
-            background-color: #eef6e8;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .stat {
-            padding: 24px;
-            border-radius: 20px;
-            background-color: #ffffff;
-            text-align: center;
-            box-shadow: 0 14px 34px rgba(90, 58, 30, 0.12);
-        }
-
-        .stat strong {
-            display: block;
-            color: #f28c28;
-            font-size: 2rem;
-        }
-
-        .stat span {
-            font-weight: 800;
-        }
-
-        .food-section {
-            background:
-                linear-gradient(180deg,
-                    #fffaf0,
-                    #fff4c7);
-        }
-
-        .food-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .food-card {
-            overflow: hidden;
-            border-radius: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 14px 34px rgba(90, 58, 30, 0.12);
-        }
-
-        .food-card img {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-        }
-
-        .food-card p {
-            margin: 0;
-            padding: 14px 16px;
-            color: #5a3a1e;
-            font-weight: 900;
-        }
-
-        .food-note {
-            margin-top: 24px;
-            text-align: center;
-        }
-
-        .portfolio-section {
-            background: var(--softgreen)
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px
-        }
-
-        .portfolio-card {
-            overflow: hidden;
-            border-radius: 22px;
-            background: var(--white);
-            box-shadow: var(--shadow)
-        }
-
-        .portfolio-label {
-            padding: 14px 20px;
-            background: var(--brown);
-            color: var(--white);
-            font-size: .78rem;
-            font-weight: 900;
-            letter-spacing: .12em
-        }
-
-        .portfolio-body {
-            display: flex;
-            flex-direction: column;
-            min-height: 300px;
-            padding: 26px
-        }
-
-        .portfolio-body h3 {
-            margin: 0 0 12px;
-            color: var(--brown);
-            font-size: 1.45rem
-        }
-
-        .portfolio-meta {
-            margin: 18px 0 22px;
-            padding: 0
-        }
-
-        .portfolio-meta div {
-            display: grid;
-            grid-template-columns: 88px 1fr;
-            gap: 8px;
-            padding: 9px 0;
-            border-top: 1px solid var(--line)
-        }
-
-        .portfolio-meta div:last-child {
-            border-bottom: 1px solid var(--line)
-        }
-
-        .portfolio-meta dt {
-            font-weight: 900
-        }
-
-        .portfolio-meta dd {
-            margin: 0
-        }
-
-        .portfolio-button {
-            display: block;
-            margin-top: auto;
-            padding: 12px 16px;
-            border-radius: 10px;
-            background: var(--green);
-            color: var(--white);
-            text-align: center;
-            font-weight: 900;
-            text-decoration: none
-        }
-
-        .contact-section {
-            background: var(--white)
-        }
-
-        .contact-box {
-            padding: 46px;
-            border-radius: 28px;
-            background: var(--brown);
-            color: var(--white);
-            text-align: center;
-            box-shadow: var(--shadow)
-        }
-
-        .contact-box h2 {
-            margin-top: 0;
-            font-size: clamp(2rem, 4vw, 3rem)
-        }
-
-        footer {
-            padding: 28px 0;
-            background: #3e2917;
-            color: #f6ead9;
-            text-align: center
-        }
-
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.3;
-        }
-
-        .brand-text small {
-            color: var(--green);
-            font-size: .78rem;
-            font-weight: 800;
-        }
-
-        .hero-title-sub {
-            display: block;
-            color: var(--orange);
-            white-space: nowrap;
-        }
-
-        .menu-button {
-            display: none;
-            width: 46px;
-            height: 46px;
-            padding: 10px;
-            border: 0;
-            border-radius: 10px;
-            background-color: var(--yellow);
-            cursor: pointer;
-        }
-
-        .menu-button span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            margin: 5px 0;
-            border-radius: 999px;
-            background-color: var(--brown);
-        }
-
-        .social-link img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
-
-        .page-top {
-            position: fixed;
-            right: 24px;
-            bottom: 24px;
-            z-index: 900;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 62px;
-            height: 62px;
-            border-radius: 50%;
-            background-color: var(--orange);
-            color: var(--white);
-            font-weight: 900;
-            line-height: 1.1;
-            text-decoration: none;
-            box-shadow: 0 8px 22px rgba(90, 58, 30, .24);
-            transition: .2s;
-        }
-
-        .page-top:hover {
-            transform: translateY(-3px);
-            background-color: var(--green);
-        }
-
-        .page-top span {
-            font-size: .7rem;
-        }
-
-        @media(max-width:900px) {
-
-            .header-inner {
-                position: relative;
-                flex-direction: row;
-                align-items: center;
-                padding: 12px 0;
-            }
-
-            .menu-button {
-                display: block;
-                margin-left: auto;
-            }
-
-            .global-nav {
-                display: none;
-                position: absolute;
-                top: calc(100% + 1px);
-                right: 0;
-                left: 0;
-                padding: 16px 4%;
-                background-color: var(--cream);
-                border-bottom: 1px solid var(--line);
-                box-shadow: 0 12px 24px rgba(90, 58, 30, .12);
-            }
-
-            .global-nav.is-open {
-                display: block;
-            }
-
-            .global-nav ul {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .global-nav a {
-                display: block;
-                padding: 12px 8px;
-                border-bottom: 1px solid var(--line);
-            }
-
-            .header-inner {
-                align-items: flex-start;
-                flex-direction: column;
-                padding: 14px 0
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-grid,
-            .profile-grid {
-                grid-template-columns: 1fr
-            }
-
-            .profile-photo-wrap {
-                max-width: 360px
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .food-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .card-grid,
-            .portfolio-grid {
-                grid-template-columns: 1fr 1fr
-            }
-        }
-
-        @media(max-width:640px) {
-            .hero-title-sub {
-                white-space: normal;
-            }
-
-            .page-top {
-                right: 14px;
-                bottom: 14px;
-                width: 54px;
-                height: 54px;
-            }
-
-            .hero {
-                padding: 58px 0
-            }
-
-            section {
-                padding: 64px 0
-            }
-
-            .card-grid,
-            .portfolio-grid,
-            .photo-gallery {
-                grid-template-columns: 1fr
-            }
-
-            .profile-text,
-            .contact-box {
-                padding: 26px 20px
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .food-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <meta name="theme-color" content="#f7c948">
+    <link rel="canonical" href="https://atsu-hoiku.com/">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- ヘッダー -->
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="#top"><img class="brand-logo" src="images/kirin-logo.jpeg" alt="きりん先生の親子イラスト">
@@ -743,18 +27,21 @@
                 <span></span>
                 <span></span>
             </button>
+
             <nav class="global-nav" aria-label="メインナビゲーション">
                 <ul>
                     <li><a href="#contents">発信内容</a></li>
                     <li><a href="#profile">自己紹介</a></li>
                     <li><a href="#food">簡単料理</a></li>
                     <li><a href="#portfolio">Web制作</a></li>
+                    <li><a href="https://x.com/atsui556" target="_blank" rel="noopener noreferrer">X</a></li>
                     <li><a href="#contact">お問い合わせ</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main id="top">
+        <!-- ヒーロー -->
         <section class="hero">
             <div class="container hero-grid">
 
@@ -822,10 +109,7 @@
 
             </div>
         </section>
-
-
-
-
+        <!-- 発信内容 -->
         <section id="contents" class="content-section">
             <div class="container">
                 <div class="section-heading"><span>PRACTICE CONTENTS</span>
@@ -866,6 +150,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- 自己紹介 -->
         <section id="profile" class="profile-section">
             <div class="container">
                 <div class="section-heading"><span>PROFILE</span>
@@ -874,10 +160,10 @@
                 </div>
                 <div class="profile-grid">
                     <div class="photo-gallery">
-                        <img src="images/profile-giraffe.jpg" alt="きりんの仮装をしたきりん先生">
-                        <img src="images/gallery-red.jpg" alt="赤鬼の仮装をしたきりん先生">
-                        <img src="images/gallery-santa.jpg" alt="サンタクロースの仮装をしたきりん先生">
-                        <img src="images/gallery-dark.jpg" alt="ハロウィンの仮装をしたきりん先生">
+                        <img src="images/profile-giraffe.jpg" alt="きりんの仮装をしたきりん先生" loading="lazy" decoding="async">
+                        <img src="images/gallery-red.jpg" alt="赤鬼の仮装をしたきりん先生" loading="lazy" decoding="async">
+                        <img src="images/gallery-santa.jpg" alt="サンタクロースの仮装をしたきりん先生" loading="lazy" decoding="async">
+                        <img src="images/gallery-dark.jpg" alt="ハロウィンの仮装をしたきりん先生" loading="lazy" decoding="async">
                     </div>
                     <div class="profile-text">
                         <h3>元園長・保育士／きりん先生</h3>
@@ -886,19 +172,15 @@
                         <div class="social-row">
                             <a class="social-link" href="https://x.com/atsui556" target="_blank"
                                 rel="noopener noreferrer">
-                                <img src="images/x-logo.png" alt="" aria-hidden="true">
+                                <img src="images/x-logo.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
                                 <span>@atsui556</span>
-                            </a>
-                            <a class="social-link" href="https://www.instagram.com/kirin_sensei_hoiku/" target="_blank"
-                                rel="noopener noreferrer">
-                                <img src="images/instagram-logo.png" alt="" aria-hidden="true">
-                                <span>@kirin_sensei_hoiku</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- これまでの経験 -->
         <section class="stats-section">
             <div class="container">
 
@@ -937,6 +219,7 @@
                 </div>
             </div>
         </section>
+        <!-- 簡単料理 -->
         <section id="food" class="food-section">
             <div class="container">
 
@@ -953,47 +236,47 @@
                 <div class="food-grid">
 
                     <article class="food-card">
-                        <img src="images/food-01.jpeg" alt="豚肉とキャベツのワンパンうどん">
+                        <img src="images/food-01.jpeg" alt="豚肉とキャベツのワンパンうどん" loading="lazy" decoding="async">
                         <p>豚肉・キャベツのワンパンうどん</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-02.jpeg" alt="れんこんを使った料理">
+                        <img src="images/food-02.jpeg" alt="れんこんを使った料理" loading="lazy" decoding="async">
                         <p>れんこんの簡単おかず</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-03.jpeg" alt="卵と野菜の全粒粉ホットサンド">
+                        <img src="images/food-03.jpeg" alt="卵と野菜の全粒粉ホットサンド" loading="lazy" decoding="async">
                         <p>卵と野菜の全粒粉ホットサンド</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-04.jpeg" alt="野菜たっぷりホットサンド">
+                        <img src="images/food-04.jpeg" alt="野菜たっぷりホットサンド" loading="lazy" decoding="async">
                         <p>野菜たっぷりホットサンド</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-05.jpeg" alt="ブルーベリーの豆腐パンケーキ">
+                        <img src="images/food-05.jpeg" alt="ブルーベリーの豆腐パンケーキ" loading="lazy" decoding="async">
                         <p>ブルーベリーの豆腐パンケーキ</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-06.jpeg" alt="オクラ納豆のさっぱり麺">
+                        <img src="images/food-06.jpeg" alt="オクラ納豆のさっぱり麺" loading="lazy" decoding="async">
                         <p>オクラ納豆のさっぱり麺</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-07.jpeg" alt="鶏むね肉の簡単焼き">
+                        <img src="images/food-07.jpeg" alt="鶏むね肉の簡単焼き" loading="lazy" decoding="async">
                         <p>鶏むね肉の簡単焼き</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-08.jpeg" alt="バナナとブルーベリーの朝食トースト">
+                        <img src="images/food-08.jpeg" alt="バナナとブルーベリーの朝食トースト" loading="lazy" decoding="async">
                         <p>バナナとブルーベリーの朝食トースト</p>
                     </article>
 
                     <article class="food-card">
-                        <img src="images/food-09.jpeg" alt="野菜たっぷり焼きそば">
+                        <img src="images/food-09.jpeg" alt="野菜たっぷり焼きそば" loading="lazy" decoding="async">
                         <p>野菜たっぷり焼きそば</p>
                     </article>
 
@@ -1007,6 +290,7 @@
             </div>
         </section>
 
+        <!-- Web制作 -->
         <section id="portfolio" class="portfolio-section">
             <div class="container">
                 <div class="section-heading"><span>WEB PORTFOLIO</span>
@@ -1071,12 +355,15 @@
                 </div>
             </div>
         </section>
+        <!-- お問い合わせ -->
         <section id="contact" class="contact-section">
             <div class="container">
                 <div class="contact-box">
                     <h2>一緒に、保育の可能性を考えませんか？</h2>
-                    <p>保育・教育・AI活用・幼児プログラミング・Web制作についてのご相談や感想をお待ちしています。</p><a class="button"
-                        href="mailto:atsui556@gmail.com?subject=きりん先生サイトからのお問い合わせ">メールで問い合わせる</a>
+                    <p>保育・教育・AI活用・幼児プログラミング・Web制作についてのご相談や感想をお待ちしています。</p>
+                    <a class="button" href="https://tally.so/r/WOXqjk" target="_blank" rel="noopener noreferrer">
+                        お問い合わせフォームを開く
+                    </a>
                 </div>
             </div>
         </section>
@@ -1087,6 +374,7 @@
         <span>TOP</span>
     </a>
 
+    <!-- フッター -->
     <footer>
         <div class="container"><small>© 2026 きりん先生｜保育×AI×教育ラボ</small></div>
     </footer>
@@ -1099,6 +387,7 @@
         if (menuButton && globalNav) {
             menuButton.addEventListener("click", function () {
                 const isOpen = globalNav.classList.toggle("is-open");
+
                 menuButton.setAttribute("aria-expanded", String(isOpen));
                 menuButton.setAttribute(
                     "aria-label",
